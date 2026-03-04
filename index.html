@@ -12,8 +12,13 @@
             --bg-light: #f8f9fa;
         }
 
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -96,7 +101,118 @@
             padding: 40px;
             width: 100%;
             flex: 1;
-            box-sizing: border-box;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .welcome-section h2 {
+            color: var(--jci-blue);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .welcome-section p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Creed, Vision & Mission Section */
+        .cvm-section {
+            margin: 30px 0;
+        }
+
+        .cvm-section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .cvm-section-title h3 {
+            color: var(--jci-blue);
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .cvm-section-title p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .cvm-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .cvm-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cvm-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .cvm-card h4 {
+            color: var(--jci-blue);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cvm-card p {
+            color: #555;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .creed-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .creed-list li {
+            color: #555;
+            line-height: 1.8;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .creed-list li::before {
+            content: "•";
+            color: var(--jci-blue);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Highlights Section */
+        .highlights-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-top: 30px;
+        }
+
+        .highlights-section h4 {
+            color: var(--jci-blue);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .highlights-section p {
+            color: #555;
         }
 
         /* Mobile View Adjustment */
@@ -123,6 +239,9 @@
             .main-content {
                 margin-top: 120px;
                 padding: 20px;
+            }
+            .cvm-cards {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -293,12 +412,49 @@
     </nav>
 
     <div class="main-content">
-        <h2>Welcome to the Legacy Reimagined Portal</h2>
-        <p>Select a section from the navigation menu to manage your JCI activities.</p>
         
-        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-top: 20px;">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <h2>Welcome to the Legacy Reimagined Portal</h2>
+            <p>Select a section from the navigation menu to manage your JCI activities.</p>
+        </div>
+
+        <!-- Creed, Vision & Mission Section -->
+        <div class="cvm-section">
+            <div class="cvm-section-title">
+                <h3>Creed, Vision & Mission</h3>
+                <p>Guiding principles that define our purpose and direction.</p>
+            </div>
+            
+            <div class="cvm-cards">
+                <!-- JCI Creed Card -->
+                <div class="cvm-card">
+                    <h4><i class="fas fa-pray"></i> JCI Creed</h4>
+                    <ul class="creed-list">
+                        <li>That faith in God gives meaning and purpose to human life</li>
+                        <li>That the brotherhood of man transcends the sovereignty of nations</li>
+                        <li>That economic justice can best be won by free men through free enterprise</li>
+                        <li>That government should be of laws rather than of men</li>
+                        <li>That earth's great treasure lies in human personality</li>
+                        <li>And that service to humanity is the best work of life</li>
+                    </ul>
+                </div>
+
+                <!-- Vision & Mission Card -->
+                <div class="cvm-card">
+                    <h4><i class="fas fa-eye"></i> Vision</h4>
+                    <p>To be the foremost global network of young leaders creating positive change in communities and beyond.</p>
+                    <br>
+                    <h4><i class="fas fa-bullseye"></i> Mission</h4>
+                    <p>To provide leadership development opportunities that empower young people to create sustainable impact in society.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Highlights Section -->
+        <div class="highlights-section">
             <h4>Today's Impact Highlights</h4>
-            <p>New event published: <b>Zone 12 Midcon 2026</b></p>
+            <p>New event published: <strong>Zone 12 Midcon 2026</strong></p>
         </div>
     </div>
 
