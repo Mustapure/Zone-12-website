@@ -3,141 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JCI India | Zone 12 - Legacy Reimagined</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>JCI Zone 12 | Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --jci-blue: #0096D6; /* Official JCI Blue */
-            --jci-dark: #1D1D1B;
-            --white: #ffffff;
+            --jci-blue: #0096D6;
+            --sidebar-width: 260px;
+            --bg-light: #f8f9fa;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
             margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            color: var(--jci-dark);
-        }
-
-        /* Navigation */
-        nav {
-            background: var(--white);
-            padding: 1rem 5%;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-light);
         }
 
-        .logo {
-            font-weight: bold;
+        /* Sidebar Styling */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: #ffffff;
+            border-right: 1px solid #ddd;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            padding-top: 20px;
+        }
+
+        .sidebar-brand {
+            padding: 0 25px 30px;
             font-size: 1.5rem;
+            font-weight: bold;
             color: var(--jci-blue);
         }
 
-        .nav-links a {
-            margin-left: 20px;
+        .nav-item {
+            padding: 15px 25px;
             text-decoration: none;
-            color: var(--jci-dark);
+            color: #555;
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
             font-weight: 500;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,150,214,0.8), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-            padding: 0 20px;
-        }
-
-        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; max-width: 700px; }
-
-        .btn {
-            background: var(--jci-blue);
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-
-        .btn:hover { background: #007bb0; }
-
-        /* Features Section */
-        .features {
-            padding: 50px 5%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+        .nav-item i {
+            margin-right: 15px;
+            width: 20px;
             text-align: center;
         }
 
-        .card {
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-bottom: 4px solid var(--jci-blue);
+        .nav-item:hover {
+            background-color: #eef9ff;
+            color: var(--jci-blue);
         }
 
-        footer {
-            background: var(--jci-dark);
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 50px;
+        .nav-item.active {
+            border-left: 5px solid var(--jci-blue);
+            background-color: #eef9ff;
+            color: var(--jci-blue);
+        }
+
+        /* Content Area */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            width: 100%;
+        }
+
+        /* Mobile View Adjustment */
+        @media (max-width: 768px) {
+            .sidebar { width: 70px; }
+            .sidebar-brand, .nav-item span { display: none; }
+            .main-content { margin-left: 70px; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">JCI INDIA ZONE 12</div>
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Leadership</a>
-            <a href="#">LOMs</a>
-            <a href="#">Contact</a>
-        </div>
-    </nav>
+    <div class="sidebar">
+        <div class="sidebar-brand">JCI Zone 12</div>
+        
+        <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i> <span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-users"></i> <span>Networking App</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-store"></i> <span>Buy from JC</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-calendar-check"></i> <span>Events & Reg</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-book-open"></i> <span>E-Magazines</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-sitemap"></i> <span>LOM Chapters</span>
+        </a>
+        <hr style="width: 80%; border: 0.5px solid #eee;">
+        <a href="#" class="nav-item">
+            <i class="fas fa-sign-in-alt"></i> <span>Login / Join</span>
+        </a>
+    </div>
 
-    <header class="hero">
-        <h1>Legacy Reimagined</h1>
-        <p>Developing leaders for a changing world. Empowering young citizens in Zone 12 to create sustainable impact.</p>
-        <a href="#about" class="btn">Explore Our Projects</a>
-    </header>
-
-    <section class="features">
-        <div class="card">
-            <h3>Leadership</h3>
-            <p>Training tomorrow's change-makers through NALANDA and ABLE programs.</p>
+    <div class="main-content">
+        <h2>Welcome to the Legacy Reimagined Portal</h2>
+        <p>Select a section from the sidebar to manage your JCI activities.</p>
+        
+        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <h4>Today's Impact Highlights</h4>
+            <p>New event published: <b>Zone 12 Midcon 2026</b></p>
         </div>
-        <div class="card">
-            <h3>Community</h3>
-            <p>Restoring water bodies and protecting our environment in Hyderabad and beyond.</p>
-        </div>
-        <div class="card">
-            <h3>Impact</h3>
-            <p>Celebrating the "Year of Legacy Reimagined" with strategic growth across all LOMs.</p>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 JCI India Zone 12. All Rights Reserved.</p>
-    </footer>
+    </div>
 
 </body>
 </html>
