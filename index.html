@@ -16,6 +16,8 @@
         body {
             margin: 0;
             display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             font-family: 'Segoe UI', sans-serif;
             background-color: var(--bg-light);
         }
@@ -71,6 +73,7 @@
             margin-left: var(--sidebar-width);
             padding: 40px;
             width: 100%;
+            flex: 1;
         }
 
         /* Mobile View Adjustment */
@@ -78,6 +81,141 @@
             .sidebar { width: 70px; }
             .sidebar-brand, .nav-item span { display: none; }
             .main-content { margin-left: 70px; }
+        }
+
+        /* Footer Styling */
+        .footer {
+            position: relative;
+            left: var(--sidebar-width);
+            right: 0;
+            background: #ffffff;
+            border-top: 1px solid #ddd;
+            padding: 20px 40px;
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .footer-section h4 {
+            color: var(--jci-blue);
+            margin: 0 0 10px 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 5px;
+        }
+
+        .footer-section a {
+            color: #666;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--jci-blue);
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .newsletter-form input[type="text"],
+        .newsletter-form input[type="email"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .newsletter-form label {
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .newsletter-form button {
+            padding: 8px 15px;
+            background: var(--jci-blue);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: #007bb5;
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .social-links a {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f0f0f0;
+            color: #666;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--jci-blue);
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #eee;
+            margin-top: 15px;
+            padding-top: 15px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Mobile Footer Adjustment */
+        @media (max-width: 768px) {
+            .footer { 
+                left: 70px; 
+                padding: 15px 20px;
+            }
+            .footer-container {
+                gap: 15px;
+            }
+            .footer-section {
+                min-width: 100px;
+            }
         }
     </style>
 </head>
@@ -120,5 +258,74 @@
         </div>
     </div>
 
+    <div class="footer">
+        <div class="footer-container">
+            <!-- Newsletter Section -->
+            <div class="footer-section">
+                <h4>Join our Newsletter</h4>
+                <form class="newsletter-form">
+                    <input type="text" placeholder="Your Name">
+                    <input type="email" placeholder="Your Email Address">
+                    <label>
+                        <input type="checkbox"> I agree to receive email updates from JCI World. I can unsubscribe at any time. See privacy policy.
+                    </label>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+
+            <!-- Menu Section -->
+            <div class="footer-section">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">What We Do</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">News and Events</a></li>
+                    <li><a href="#">Media</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect Section -->
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">JCI Senate</a></li>
+                    <li><a href="#">JCI Foundation</a></li>
+                    <li><a href="#">JCI Masterclass</a></li>
+                    <li><a href="#">JCI Club 100</a></li>
+                    <li><a href="#">JCI Store</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Branding</a></li>
+                    <li><a href="#">Toolkits</a></li>
+                </ul>
+            </div>
+
+            <!-- Follow Us Section -->
+            <div class="footer-section">
+                <h4>Follow us</h4>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" title="X"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="Tiktok"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <div style="margin-top: 10px;">
+                    <a href="#" style="display: inline-flex; align-items: center; gap: 5px;">
+                        <i class="fas fa-download"></i> Download JCI App
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <strong>Official Linktr.ee</strong> | &copy; 2024 JCI India Zone 12. All Rights Reserved.
+        </div>
+    </div>
+
 </body>
 </html>
+
