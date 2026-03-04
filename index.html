@@ -9,7 +9,6 @@
     <style>
         :root {
             --jci-blue: #0096D6;
-            --sidebar-width: 260px;
             --bg-light: #f8f9fa;
         }
 
@@ -22,37 +21,50 @@
             background-color: var(--bg-light);
         }
 
-        /* Sidebar Styling */
-        .sidebar {
-            width: var(--sidebar-width);
-            height: 100vh;
+        /* Top Navigation Bar */
+        .navbar {
             background: #ffffff;
-            border-right: 1px solid #ddd;
-            position: fixed;
+            border-bottom: 1px solid #ddd;
+            padding: 0 30px;
+            height: 70px;
             display: flex;
-            flex-direction: column;
-            padding-top: 20px;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
         }
 
-        .sidebar-brand {
-            padding: 0 25px 30px;
+        .navbar-brand {
             font-size: 1.5rem;
             font-weight: bold;
             color: var(--jci-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .nav-item {
-            padding: 15px 25px;
+            padding: 12px 20px;
             text-decoration: none;
             color: #555;
             display: flex;
             align-items: center;
             transition: 0.3s;
             font-weight: 500;
+            border-radius: 5px;
         }
 
         .nav-item i {
-            margin-right: 15px;
+            margin-right: 8px;
             width: 20px;
             text-align: center;
         }
@@ -63,34 +75,63 @@
         }
 
         .nav-item.active {
-            border-left: 5px solid var(--jci-blue);
             background-color: #eef9ff;
             color: var(--jci-blue);
         }
 
+        .nav-item.login-btn {
+            background-color: var(--jci-blue);
+            color: white;
+            margin-left: 10px;
+        }
+
+        .nav-item.login-btn:hover {
+            background-color: #007bb5;
+            color: white;
+        }
+
         /* Content Area */
         .main-content {
-            margin-left: var(--sidebar-width);
+            margin-top: 70px;
             padding: 40px;
             width: 100%;
             flex: 1;
+            box-sizing: border-box;
         }
 
         /* Mobile View Adjustment */
         @media (max-width: 768px) {
-            .sidebar { width: 70px; }
-            .sidebar-brand, .nav-item span { display: none; }
-            .main-content { margin-left: 70px; }
+            .navbar {
+                padding: 0 15px;
+                flex-wrap: wrap;
+                height: auto;
+                padding: 10px 15px;
+            }
+            .navbar-brand span {
+                display: none;
+            }
+            .navbar-menu {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            .nav-item span {
+                display: none;
+            }
+            .nav-item {
+                padding: 10px;
+            }
+            .main-content {
+                margin-top: 120px;
+                padding: 20px;
+            }
         }
 
         /* Footer Styling */
         .footer {
             position: relative;
-            left: var(--sidebar-width);
-            right: 0;
             background: #ffffff;
             border-top: 1px solid #ddd;
-            padding: 20px 40px;
+            padding: 30px 40px;
             color: #666;
             font-size: 0.85rem;
             margin-top: auto;
@@ -207,8 +248,7 @@
         /* Mobile Footer Adjustment */
         @media (max-width: 768px) {
             .footer { 
-                left: 70px; 
-                padding: 15px 20px;
+                padding: 20px;
             }
             .footer-container {
                 gap: 15px;
@@ -221,38 +261,42 @@
 </head>
 <body>
 
-    <div class="sidebar">
-        <div class="sidebar-brand">JCI India Zone12</div>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <i class="fas fa-star"></i> <span>JCI India Zone12</span>
+        </div>
         
-        <a href="#" class="nav-item active">
-            <i class="fas fa-home"></i> <span>Dashboard</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="fas fa-users"></i> <span>Networking App</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="fas fa-store"></i> <span>Buy from JC</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="fas fa-calendar-check"></i> <span>Events & Reg</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="fas fa-book-open"></i> <span>E-Magazines</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="fas fa-sitemap"></i> <span>LOM Chapters</span>
-        </a>
-        <hr style="width: 80%; border: 0.5px solid #eee;">
-        <a href="#" class="nav-item">
-            <i class="fas fa-sign-in-alt"></i> <span>Login / Join</span>
-        </a>
-    </div>
+        <div class="navbar-menu">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-home"></i> <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-users"></i> <span>Networking App</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-store"></i> <span>Buy from JC</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-calendar-check"></i> <span>Events & Reg</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-book-open"></i> <span>E-Magazines</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-sitemap"></i> <span>LOM Chapters</span>
+            </a>
+            <a href="#" class="nav-item login-btn">
+                <i class="fas fa-sign-in-alt"></i> <span>Login / Join</span>
+            </a>
+        </div>
+    </nav>
 
     <div class="main-content">
         <h2>Welcome to the Legacy Reimagined Portal</h2>
-        <p>Select a section from the sidebar to manage your JCI activities.</p>
+        <p>Select a section from the navigation menu to manage your JCI activities.</p>
         
-        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-top: 20px;">
             <h4>Today's Impact Highlights</h4>
             <p>New event published: <b>Zone 12 Midcon 2026</b></p>
         </div>
