@@ -86,19 +86,17 @@
     </div>
 
     <!-- Join JCI Section -->
-    <section id="join-jci" style="padding:50px; background:#f5f5f5; text-align:center;">
+    <section id="join-jci">
         <h2>Be a Part of JCI</h2>
         <p>Join a global movement of young leaders creating positive change.</p>
 
-        <form action="#" method="post" style="max-width:500px; margin:auto;">
-            <input type="text" name="name" placeholder="Full Name" required style="width:100%; padding:10px; margin:10px 0;"><br>
-            <input type="email" name="email" placeholder="Email Address" required style="width:100%; padding:10px; margin:10px 0;"><br>
-            <input type="tel" name="phone" placeholder="Phone Number" required style="width:100%; padding:10px; margin:10px 0;"><br>
-            <input type="text" name="city" placeholder="Location" required style="width:100%; padding:10px; margin:10px 0;"><br>
-            <textarea name="message" placeholder="Why do you want to join JCI?" style="width:100%; padding:10px; margin:10px 0;"></textarea>
-            <button type="submit" style="background:#0056b3; color:white; padding:12px 25px; border:none; cursor:pointer;">
-                🔵 Join JCI
-            </button>
+        <form action="#" method="post">
+            <input type="text" name="name" placeholder="Full Name" required><br>
+            <input type="email" name="email" placeholder="Email Address" required><br>
+            <input type="tel" name="phone" placeholder="Phone Number" required><br>
+            <input type="text" name="city" placeholder="Location" required><br>
+            <textarea name="message" placeholder="Why do you want to join JCI?"></textarea>
+            <button type="submit">🔵 Join JCI</button>
         </form>
     </section>
 
