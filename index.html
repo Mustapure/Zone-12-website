@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png">
-      <title>JCI Zone 12 | Dashboard</title>
+    <title>JCI Zone 12 | Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -58,7 +59,7 @@
         }
 
         .nav-item {
-            padding: 12px 20px;
+            padding: 10px 15px;
             text-decoration: none;
             color: #555;
             display: flex;
@@ -66,12 +67,14 @@
             transition: 0.3s;
             font-weight: 500;
             border-radius: 5px;
+            font-size: 0.85rem;
         }
 
         .nav-item i {
-            margin-right: 8px;
-            width: 20px;
+            margin-right: 6px;
+            width: 18px;
             text-align: center;
+            font-size: 0.9rem;
         }
 
         .nav-item:hover {
@@ -151,13 +154,13 @@
             background: white;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .cvm-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
 
         .cvm-card h4 {
@@ -201,7 +204,7 @@
             background: white;
             padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             margin-top: 30px;
         }
 
@@ -215,6 +218,91 @@
             color: #555;
         }
 
+        /* Four Areas of Opportunity */
+        .fao-section {
+            margin: 50px 0 30px 0;
+        }
+
+        .fao-section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .fao-section-title h3 {
+            color: var(--jci-blue);
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .fao-section-title p {
+            color: #666;
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .fao-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .fao-card {
+            background: white;
+            padding: 25px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .fao-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .fao-card .icon {
+            width: 60px;
+            height: 60px;
+            background: #eef9ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+
+        .fao-card .icon i {
+            font-size: 1.5rem;
+            color: var(--jci-blue);
+        }
+
+        .fao-card h4 {
+            color: var(--jci-blue);
+            font-size: 1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .fao-card p {
+            color: #666;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 1024px) {
+            .fao-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .fao-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Mobile View Adjustment */
         @media (max-width: 768px) {
             .navbar {
@@ -223,26 +311,45 @@
                 height: auto;
                 padding: 10px 15px;
             }
+
             .navbar-brand span {
                 display: none;
             }
+
             .navbar-menu {
                 flex-wrap: wrap;
                 gap: 5px;
             }
+
             .nav-item span {
                 display: none;
             }
+
             .nav-item {
                 padding: 10px;
             }
+
             .main-content {
                 margin-top: 120px;
                 padding: 20px;
             }
+
             .cvm-cards {
                 grid-template-columns: 1fr;
             }
+        }
+
+        /*logo styling */
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            height: 80px;
+            /* Adjust size */
+            width: auto;
         }
 
         /* Footer Styling */
@@ -366,26 +473,29 @@
 
         /* Mobile Footer Adjustment */
         @media (max-width: 768px) {
-            .footer { 
+            .footer {
                 padding: 20px;
             }
+
             .footer-container {
                 gap: 15px;
             }
+
             .footer-section {
                 min-width: 100px;
             }
         }
     </style>
 </head>
+
 <body>
 
     <!-- Top Navigation Bar -->
     <nav class="navbar">
         <div class="navbar-brand">
-            <i class="fas fa-star"></i> <span>JCI India Zone12</span>
-        </div>
-        
+            <img src="JCI Zone.png" alt="JCI India Zone 12 Logo" class="logo">
+                </div>
+
         <div class="navbar-menu">
             <a href="#" class="nav-item active">
                 <i class="fas fa-home"></i> <span>Dashboard</span>
@@ -405,14 +515,17 @@
             <a href="#" class="nav-item">
                 <i class="fas fa-sitemap"></i> <span>LOM Chapters</span>
             </a>
-            <a href="#" class="nav-item login-btn">
-                <i class="fas fa-sign-in-alt"></i> <span>Login / Join</span>
+            <a href="https://member.jciindia.in/#/" class="nav-item login-btn">
+                <i class="fas fa-sign-in-alt"></i> <span>JCI</span>
+            </a>
+              <a href="https://member.jciindia.in/#/" class="nav-item login-btn">
+                <i class="fas fa-sign-in-alt"></i> <span>JVC</span>
             </a>
         </div>
     </nav>
 
     <div class="main-content">
-        
+
         <!-- Welcome Section -->
         <div class="welcome-section">
             <h2>Welcome to the Legacy Reimagined Portal</h2>
@@ -425,7 +538,7 @@
                 <h3>Creed, Vision & Mission</h3>
                 <p>Guiding principles that define our purpose and direction.</p>
             </div>
-            
+
             <div class="cvm-cards">
                 <!-- JCI Creed Card -->
                 <div class="cvm-card">
@@ -443,10 +556,12 @@
                 <!-- Vision & Mission Card -->
                 <div class="cvm-card">
                     <h4><i class="fas fa-eye"></i> Vision</h4>
-                    <p>To be the foremost global network of young leaders creating positive change in communities and beyond.</p>
+                    <p>To be the foremost global network of young leaders creating positive change in communities and
+                        beyond.</p>
                     <br>
                     <h4><i class="fas fa-bullseye"></i> Mission</h4>
-                    <p>To provide leadership development opportunities that empower young people to create sustainable impact in society.</p>
+                    <p>To provide leadership development opportunities that empower young people to create sustainable
+                        impact in society.</p>
                 </div>
             </div>
         </div>
@@ -455,6 +570,42 @@
         <div class="highlights-section">
             <h4>Today's Impact Highlights</h4>
             <p>New event published: <strong>Zone 12 Midcon 2026</strong></p>
+        </div>
+
+        <!-- Four Areas of Opportunity Section -->
+        <div class="fao-section">
+            <div class="fao-section-title">
+                <h3>Four Areas of Opportunity</h3>
+                <p>JCI develops young leaders by empowering personal growth, creating community impact, fostering
+                    international cooperation, and supporting business and entrepreneurship. Through these four areas,
+                    we shape active citizens who drive positive change locally and globally.</p>
+            </div>
+
+            <div class="fao-cards">
+                <div class="fao-card">
+                    <div class="icon"><i class="fas fa-briefcase"></i></div>
+                    <h4>Business and Entrepreneurship</h4>
+                    <p>Fostering Innovation Through Business and Entrepreneurship</p>
+                </div>
+
+                <div class="fao-card">
+                    <div class="icon"><i class="fas fa-globe"></i></div>
+                    <h4>International Cooperation</h4>
+                    <p>Connecting Cultures Through Global Cooperation</p>
+                </div>
+
+                <div class="fao-card">
+                    <div class="icon"><i class="fas fa-user-graduate"></i></div>
+                    <h4>Individual Development</h4>
+                    <p>Developing Young Leaders Through Personal Growth</p>
+                </div>
+
+                <div class="fao-card">
+                    <div class="icon"><i class="fas fa-hands-helping"></i></div>
+                    <h4>Community Impact</h4>
+                    <p>Building Better Communities Through Local Action</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -467,7 +618,8 @@
                     <input type="text" placeholder="Your Name">
                     <input type="email" placeholder="Your Email Address">
                     <label>
-                        <input type="checkbox"> I agree to receive email updates from JCI World. I can unsubscribe at any time. See privacy policy.
+                        <input type="checkbox"> I agree to receive email updates from JCI World. I can unsubscribe at
+                        any time. See privacy policy.
                     </label>
                     <button type="submit">Subscribe</button>
                 </form>
@@ -520,12 +672,12 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="footer-bottom">
             <strong>Official Linktr.ee</strong> | &copy; 2024 JCI India Zone 12. All Rights Reserved.
         </div>
     </div>
 
 </body>
-</html>
 
+</html>
