@@ -1,6 +1,6 @@
 <?php $page = 'home'; include 'include/header.php'; ?>
 
-    <div class="main-content">
+    <main class="main-content">
 
         <!-- Welcome Section -->
         <div class="welcome-section">
@@ -83,21 +83,32 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- Join JCI Section -->
     <section id="join-jci">
-        <h2>Be a Part of JCI</h2>
-        <p>Join a global movement of young leaders creating positive change.</p>
+        <div class="join-jci-container">
+            <div class="join-jci-image">
+                <img src="JCI Zone.png" alt="JCI Zone 12">
+                <div class="image-overlay">
+                    <h3>Join the Movement</h3>
+                    <p>Become part of a global network of young leaders creating positive change in communities worldwide.</p>
+                </div>
+            </div>
+            <div class="join-jci-form">
+                <h2>Be a Part of JCI</h2>
+                <p>Join a global movement of young leaders creating positive change.</p>
 
-        <form action="#" method="post">
-            <input type="text" name="name" placeholder="Full Name" required><br>
-            <input type="email" name="email" placeholder="Email Address" required><br>
-            <input type="tel" name="phone" placeholder="Phone Number" required><br>
-            <input type="text" name="city" placeholder="Location" required><br>
-            <textarea name="message" placeholder="Why do you want to join JCI?"></textarea>
-            <button type="submit">🔵 Join JCI</button>
-        </form>
+                <form action="#" method="post">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                    <input type="text" name="city" placeholder="Location" required>
+                    <textarea name="message" placeholder="Why do you want to join JCI?"></textarea>
+                    <button type="submit">🔵 Join JCI</button>
+                </form>
+            </div>
+        </div>
     </section>
 
 <?php include 'include/footer.php'; ?>

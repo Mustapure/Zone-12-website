@@ -34,7 +34,7 @@
             <a href="events.php" class="nav-item <?php echo ($page == 'events') ? 'active' : ''; ?>">
                 <i class="fas fa-calendar-alt"></i>Events
             </a>
-            <a href="#" class="nav-item login-btn">Login</a>
+            <a href="login.php" class="nav-item login-btn">Login</a>
         </div>
     </nav>
 

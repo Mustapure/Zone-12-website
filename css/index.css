@@ -189,54 +189,126 @@
 #join-jci {
     padding: 50px;
     background: #f5f5f5;
+    width: 100%;
+    display: block;
+}
+
+.join-jci-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+/* Left Column - Image Side */
+.join-jci-image {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    height: 100%;
+    min-height: 450px;
+}
+
+.join-jci-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 150, 214, 0.95), rgba(0, 150, 214, 0.7));
+    padding: 30px;
+    color: white;
     text-align: center;
 }
 
-#join-jci h2 {
+.image-overlay h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.image-overlay p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.95;
+}
+
+/* Right Column - Form Side */
+.join-jci-form {
+    padding: 20px;
+}
+
+.join-jci-form h2 {
     margin-bottom: 15px;
-    color: #333;
+    color: var(--jci-blue);
+    font-size: 2rem;
 }
 
-#join-jci p {
+.join-jci-form > p {
     color: #666;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    font-size: 1rem;
 }
 
-#join-jci form {
-    max-width: 500px;
-    margin: auto;
+.join-jci-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-#join-jci input[type="text"],
-#join-jci input[type="email"],
-#join-jci input[type="tel"],
-#join-jci textarea {
+.join-jci-form input[type="text"],
+.join-jci-form input[type="email"],
+.join-jci-form input[type="tel"],
+.join-jci-form textarea {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 0.9rem;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background: white;
 }
 
-#join-jci textarea {
-    min-height: 80px;
+.join-jci-form input:focus,
+.join-jci-form textarea:focus {
+    outline: none;
+    border-color: var(--jci-blue);
+    box-shadow: 0 0 0 3px rgba(0, 150, 214, 0.15);
+}
+
+.join-jci-form textarea {
+    min-height: 100px;
     resize: vertical;
 }
 
-#join-jci button {
-    background: #0056b3;
+.join-jci-form button {
+    background: var(--jci-blue);
     color: white;
-    padding: 12px 25px;
+    padding: 14px 30px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 1rem;
-    transition: 0.3s;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.2s;
+    align-self: flex-start;
 }
 
-#join-jci button:hover {
-    background: #004494;
+.join-jci-form button:hover {
+    background: #007bb5;
+    transform: translateY(-2px);
 }
 
 /* Responsive */
@@ -244,17 +316,66 @@
     .fao-cards {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .join-jci-container {
+        gap: 30px;
+    }
+    
+    .join-jci-image {
+        min-height: 380px;
+    }
 }
 
 @media (max-width: 768px) {
     .cvm-cards {
         grid-template-columns: 1fr;
     }
+    
+    .join-jci-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .join-jci-image {
+        min-height: 300px;
+    }
+    
+    .image-overlay {
+        padding: 20px;
+    }
+    
+    .image-overlay h3 {
+        font-size: 1.3rem;
+    }
+    
+    .image-overlay p {
+        font-size: 0.9rem;
+    }
+    
+    .join-jci-form {
+        padding: 10px;
+    }
+    
+    .join-jci-form h2 {
+        font-size: 1.6rem;
+    }
 }
 
 @media (max-width: 576px) {
     .fao-cards {
         grid-template-columns: 1fr;
+    }
+    
+    #join-jci {
+        padding: 30px 20px;
+    }
+    
+    .join-jci-image {
+        min-height: 250px;
+    }
+    
+    .join-jci-form button {
+        width: 100%;
     }
 }
 
