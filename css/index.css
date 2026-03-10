@@ -187,28 +187,24 @@
 
 /* Join JCI Section */
 #join-jci {
-    padding: 50px;
-    background: #f5f5f5;
-    width: 100%;
-    display: block;
+    margin: 50px 0;
+    padding: 0 20px;
 }
 
 .join-jci-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    max-width: 1200px;
+    display: flex;
+    max-width: 1100px;
     margin: 0 auto;
-    align-items: stretch;
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Left Column - Image Side */
+/* Left Column: Image */
 .join-jci-image {
+    flex: 1;
     position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-    height: 100%;
     min-height: 450px;
 }
 
@@ -227,10 +223,9 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0, 150, 214, 0.95), rgba(0, 150, 214, 0.7));
-    padding: 30px;
+    padding: 40px 30px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
     color: white;
-    text-align: center;
 }
 
 .image-overlay h3 {
@@ -242,29 +237,35 @@
 .image-overlay p {
     font-size: 0.95rem;
     line-height: 1.5;
-    opacity: 0.95;
 }
 
-/* Right Column - Form Side */
+/* Right Column: Form */
 .join-jci-form {
-    padding: 20px;
+    flex: 1.2;
+    padding: 50px;
 }
 
 .join-jci-form h2 {
-    margin-bottom: 15px;
     color: var(--jci-blue);
-    font-size: 2rem;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
 }
 
 .join-jci-form > p {
     color: #666;
-    margin-bottom: 25px;
-    font-size: 1rem;
+    margin-bottom: 0;
+    font-size: 0.95rem;
 }
 
 .join-jci-form form {
     display: flex;
     flex-direction: column;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.form-row {
+    display: flex;
     gap: 15px;
 }
 
@@ -274,108 +275,57 @@
 .join-jci-form textarea {
     width: 100%;
     padding: 12px 15px;
-    border: 2px solid #e0e0e0;
+    border: 1px solid #ddd;
     border-radius: 8px;
+    font-family: inherit;
     font-size: 0.95rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    background: white;
+    transition: border-color 0.3s;
 }
 
 .join-jci-form input:focus,
 .join-jci-form textarea:focus {
     outline: none;
     border-color: var(--jci-blue);
-    box-shadow: 0 0 0 3px rgba(0, 150, 214, 0.15);
 }
 
 .join-jci-form textarea {
-    min-height: 100px;
+    min-height: 80px;
     resize: vertical;
 }
 
 .join-jci-form button {
-    background: var(--jci-blue);
+    padding: 15px;
+    background-color: var(--jci-blue);
     color: white;
-    padding: 14px 30px;
     border: none;
     border-radius: 8px;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
     font-size: 1rem;
-    font-weight: 600;
-    transition: background 0.3s, transform 0.2s;
-    align-self: flex-start;
 }
 
 .join-jci-form button:hover {
-    background: #007bb5;
-    transform: translateY(-2px);
+    background-color: #0077aa;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-    .fao-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
     .join-jci-container {
-        gap: 30px;
-    }
-    
-    .join-jci-image {
-        min-height: 380px;
-    }
-}
-
-@media (max-width: 768px) {
-    .cvm-cards {
-        grid-template-columns: 1fr;
-    }
-    
-    .join-jci-container {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .join-jci-image {
-        min-height: 300px;
-    }
-    
-    .image-overlay {
-        padding: 20px;
-    }
-    
-    .image-overlay h3 {
-        font-size: 1.3rem;
-    }
-    
-    .image-overlay p {
-        font-size: 0.9rem;
-    }
-    
-    .join-jci-form {
-        padding: 10px;
-    }
-    
-    .join-jci-form h2 {
-        font-size: 1.6rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .fao-cards {
-        grid-template-columns: 1fr;
-    }
-    
-    #join-jci {
-        padding: 30px 20px;
+        flex-direction: column;
     }
     
     .join-jci-image {
         min-height: 250px;
     }
     
-    .join-jci-form button {
-        width: 100%;
+    .join-jci-image img {
+        position: relative;
+        height: 250px;
+    }
+    
+    .form-row {
+        flex-direction: column;
     }
 }
 

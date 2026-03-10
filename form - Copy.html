@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Contact Section</title>
+<style>
+/* Join JCI Section */
+#join-jci {
+    margin: 50px 0;
+    padding: 0 20px;
+}
+
+.join-jci-container {
+    display: flex;
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Left Column: Image */
+.join-jci-image {
+    flex: 1;
+    position: relative;
+    min-height: 450px;
+}
+
+.join-jci-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px 30px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+    color: white;
+}
+
+/* Right Column: Form */
+.join-jci-form {
+    flex: 1.2;
+    padding: 50px;
+}
+
+.join-jci-form h2 {
+    color: var(--jci-blue);
+    margin-bottom: 10px;
+}
+
+.join-jci-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.join-jci-form input, 
+.join-jci-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+.join-jci-form button {
+    padding: 15px;
+    background-color: var(--jci-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.join-jci-form button:hover {
+    background-color: #0077aa;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+    .join-jci-container {
+        flex-direction: column;
+    }
+    .join-jci-image {
+        min-height: 250px;
+    }
+    .form-row {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="row">
+
+<!-- Right Form -->
+<section id="join-jci">
+    <div class="join-jci-container">
+        <div class="join-jci-image">
+            <img src="join.jpg" alt="JCI Zone 12">
+            <div class="image-overlay">
+                <h3>Join the Movement</h3>
+                <p>Become part of a global network of young leaders creating positive change in communities worldwide.</p>
+            </div>
+        </div>
+
+        <div class="join-jci-form">
+            <h2>Be a Part of JCI</h2>
+            <p>Join a global movement of young leaders creating positive change.</p>
+
+            <form action="#" method="post">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <div class="form-row">
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                </div>
+                <input type="text" name="city" placeholder="Location" required>
+                <textarea name="message" placeholder="Why do you want to join JCI?"></textarea>
+                <button type="submit">🔵 Join JCI</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
+
