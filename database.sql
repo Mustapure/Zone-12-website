@@ -63,3 +63,24 @@ CREATE TABLE IF NOT EXISTS contact_submissions (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Business Directory table
+CREATE TABLE IF NOT EXISTS businesses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    business_name VARCHAR(150) NOT NULL,
+    owner_name VARCHAR(100) NOT NULL,
+    owner_jci_name VARCHAR(100),
+    email VARCHAR(100) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    website VARCHAR(200),
+    address TEXT,
+    city VARCHAR(100) NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    description TEXT,
+    tags VARCHAR(255),
+    status ENUM('active', 'pending', 'inactive') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+);
+

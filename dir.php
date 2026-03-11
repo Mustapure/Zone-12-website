@@ -1,8 +1,45 @@
-<?php $page = 'dir'; include 'include/header.php'; ?>
+
+<?php 
+$page = 'dir'; 
+include 'include/header.php';
+
+// Include database config
+require_once 'config/database.php';
+require_once 'config/session.php';
+
+$db = getDB();
+
+// Get businesses from database (only active ones)
+$businesses = [];
+$result = $db->query("SELECT * FROM businesses WHERE status = 'active' ORDER BY business_name ASC");
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $businesses[] = $row;
+    }
+}
+
+// Get unique cities for filter
+$cities = [];
+$cityResult = $db->query("SELECT DISTINCT city FROM businesses WHERE status = 'active' ORDER BY city");
+if ($cityResult && $cityResult->num_rows > 0) {
+    while ($row = $cityResult->fetch_assoc()) {
+        $cities[] = $row['city'];
+    }
+}
+?>
 
     <header class="hero-section">
         <h1>Business Directory</h1>
         <p>Connecting JCI members and their businesses across the world.</p>
+        <?php if (isLoggedIn()): ?>
+            <a href="add-business.php" class="inline-block mt-4 px-6 py-2 bg-white text-jci-dark font-semibold rounded-lg hover:bg-gray-100 transition">
+                <i class="fas fa-plus mr-2"></i>Add Your Business
+            </a>
+        <?php else: ?>
+            <a href="login.php" class="inline-block mt-4 px-6 py-2 bg-white text-jci-dark font-semibold rounded-lg hover:bg-gray-100 transition">
+                <i class="fas fa-sign-in-alt mr-2"></i>Login to Add Business
+            </a>
+        <?php endif; ?>
     </header>
 
     <div class="container">
@@ -23,10 +60,9 @@
             <div class="filter-box">
                 <select id="cityFilter" onchange="filterBusinesses()">
                     <option value="">All Cities</option>
-                    <option value="Zone 12">Zone 12</option>
-                    <option value="Mumbai">Mumbai</option>
-                    <option value="Delhi">Delhi</option>
-                    <option value="Bangalore">Bangalore</option>
+                    <?php foreach ($cities as $city): ?>
+                        <option value="<?php echo htmlspecialchars($city); ?>"><?php echo htmlspecialchars($city); ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div class="sort-box">
@@ -39,86 +75,41 @@
         </div>
 
         <div class="dir-grid" id="businessGrid">
-            <div class="business-card">
-                <h3 class="business-name">Creative Pulse Marketing</h3>
-                <p class="owner-name">Owned by: JC John Doe</p>
-                <div class="tag-container">
-                    <span class="tag">Service Provider</span>
-                    <span class="tag">Digital Marketing</span>
-                    <span class="tag">Branding</span>
+            <?php if (empty($businesses)): ?>
+                <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #666;">
+                    <p>No businesses listed yet.</p>
+                    <a href="add-business.php" class="text-jci hover:underline">Be the first to list your business!</a>
                 </div>
-                <div class="contact-info">
-                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
-                    <p><i class="fas fa-envelope"></i> info@creativepulse.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Suite 101, Business Hub, Zone 12</p>
+            <?php else: ?>
+                <?php foreach ($businesses as $biz): 
+                    $tags = $biz['tags'] ? explode(',', $biz['tags']) : [];
+                    $location = $biz['website'] ? $biz['website'] : $biz['address'];
+                    $btnLink = $biz['email'] ? 'mailto:' . $biz['email'] : ($biz['website'] ?: '#');
+                    $btnText = $biz['email'] ? 'Contact' : ($biz['website'] ? 'Visit Website' : 'View Details');
+                ?>
+                <div class="business-card" 
+                     data-name="<?php echo htmlspecialchars(strtolower($biz['business_name'])); ?>"
+                     data-owner="<?php echo htmlspecialchars(strtolower($biz['owner_name'])); ?>"
+                     data-category="<?php echo htmlspecialchars($biz['category']); ?>"
+                     data-city="<?php echo htmlspecialchars($biz['city']); ?>"
+                     data-tags="<?php echo htmlspecialchars(strtolower($biz['tags'])); ?>">
+                    <h3 class="business-name"><?php echo htmlspecialchars($biz['business_name']); ?></h3>
+                    <p class="owner-name">Owned by: <?php echo htmlspecialchars($biz['owner_jci_name'] ?: $biz['owner_name']); ?></p>
+                    <div class="tag-container">
+                        <span class="tag"><?php echo htmlspecialchars($biz['category']); ?></span>
+                        <?php foreach (array_slice($tags, 0, 2) as $tag): ?>
+                            <span class="tag"><?php echo htmlspecialchars(trim($tag)); ?></span>
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> <?php echo htmlspecialchars($biz['phone']); ?></p>
+                        <p><i class="fas fa-envelope"></i> <?php echo htmlspecialchars($biz['email']); ?></p>
+                        <p><i class="fas fa-map-marker-alt"></i> <?php echo htmlspecialchars($biz['city']); ?></p>
+                    </div>
+                    <a href="<?php echo htmlspecialchars($btnLink); ?>" class="btn-contact"><?php echo htmlspecialchars($btnText); ?></a>
                 </div>
-                <a href="mailto:info@creativepulse.com" class="btn-contact">Get a Quote</a>
-            </div>
-            
-
-            <div class="business-card">
-                <h3 class="business-name">Green Earth Solar Solutions</h3>
-                <p class="owner-name">Owned by: JC Sarah Smith</p>
-                <div class="tag-container">
-                    <span class="tag">Products</span>
-                    <span class="tag">Solar Panels</span>
-                    <span class="tag">Installation Service</span>
-                </div>
-                <div class="contact-info">
-                    <p><i class="fas fa-phone"></i> +91 99988 77766</p>
-                    <p><i class="fas fa-envelope"></i> sarah@greenearth.com</p>
-                    <p><i class="fas fa-globe"></i> www.greenearthsolar.com</p>
-                </div>
-                <a href="#" class="btn-contact">View Catalog</a>
-            </div>
-
-            <div class="business-card">
-                <h3 class="business-name">Elite Tech Supplies</h3>
-                <p class="owner-name">Owned by: JC Michael Ross</p>
-                <div class="tag-container">
-                    <span class="tag">Products</span>
-                    <span class="tag">IT Hardware</span>
-                    <span class="tag">Bulk Supplier</span>
-                </div>
-                <div class="contact-info">
-                    <p><i class="fas fa-phone"></i> +91 88776 65544</p>
-                    <p><i class="fas fa-envelope"></i> sales@elitetech.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Industrial Area Phase II</p>
-                </div>
-                <a href="#" class="btn-contact">Inquire Now</a>
-            </div>
-
-            <div class="business-card">
-                <h3 class="business-name">Fresh Foods Catering</h3>
-                <p class="owner-name">Owned by: JC Priya Sharma</p>
-                <div class="tag-container">
-                    <span class="tag">Services</span>
-                    <span class="tag">Catering</span>
-                    <span class="tag">Events</span>
-                </div>
-                <div class="contact-info">
-                    <p><i class="fas fa-phone"></i> +91 77665 44332</p>
-                    <p><i class="fas fa-envelope"></i> priya@freshfoods.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Food Court, Zone 12</p>
-                </div>
-                <a href="mailto:priya@freshfoods.com" class="btn-contact">Book Now</a>
-            </div>
-
-            <div class="business-card">
-                <h3 class="business-name">Urban Design Studio</h3>
-                <p class="owner-name">Owned by: JC Arjun Patel</p>
-                <div class="tag-container">
-                    <span class="tag">Services</span>
-                    <span class="tag">Interior Design</span>
-                    <span class="tag">Architecture</span>
-                </div>
-                <div class="contact-info">
-                    <p><i class="fas fa-phone"></i> +91 99887 76655</p>
-                    <p><i class="fas fa-envelope"></i> arjun@urbandesign.com</p>
-                    <p><i class="fas fa-globe"></i> www.urbandesignstudio.com</p>
-                </div>
-                <a href="#" class="btn-contact">Get Quote</a>
-            </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -320,95 +311,64 @@
     </style>
 
     <script>
-        // Business data
-        const businesses = [
-            { name: "Creative Pulse Marketing", owner: "JC John Doe", category: "Service Provider", city: "Zone 12", tags: ["Service Provider", "Digital Marketing", "Branding"], phone: "+91 98765 43210", email: "info@creativepulse.com", location: "Suite 101, Business Hub, Zone 12", btn: "Get a Quote", link: "mailto:info@creativepulse.com" },
-            { name: "Green Earth Solar Solutions", owner: "JC Sarah Smith", category: "Products", city: "Mumbai", tags: ["Products", "Solar Panels", "Installation Service"], phone: "+91 99988 77766", email: "sarah@greenearth.com", location: "www.greenearthsolar.com", btn: "View Catalog", link: "#" },
-            { name: "Elite Tech Supplies", owner: "JC Michael Ross", category: "Products", city: "Delhi", tags: ["Products", "IT Hardware", "Bulk Supplier"], phone: "+91 88776 65544", email: "sales@elitetech.com", location: "Industrial Area Phase II", btn: "Inquire Now", link: "#" },
-            { name: "Fresh Foods Catering", owner: "JC Priya Sharma", category: "Services", city: "Zone 12", tags: ["Services", "Catering", "Events"], phone: "+91 77665 44332", email: "priya@freshfoods.com", location: "Food Court, Zone 12", btn: "Book Now", link: "mailto:priya@freshfoods.com" },
-            { name: "Urban Design Studio", owner: "JC Arjun Patel", category: "Services", city: "Bangalore", tags: ["Services", "Interior Design", "Architecture"], phone: "+91 99887 76655", email: "arjun@urbandesign.com", location: "www.urbandesignstudio.com", btn: "Get Quote", link: "#" }
-        ];
-
-        function renderBusinesses(data) {
-            const grid = document.getElementById('businessGrid');
-            grid.innerHTML = '';
-            
-            if (data.length === 0) {
-                grid.innerHTML = '<div class="no-results">No businesses found matching your criteria.</div>';
-                return;
-            }
-            
-            data.forEach(biz => {
-                const card = document.createElement('div');
-                card.className = 'business-card';
-                card.innerHTML = `
-                    <h3 class="business-name">${biz.name}</h3>
-                    <p class="owner-name">Owned by: ${biz.owner}</p>
-                    <div class="tag-container">
-                        ${biz.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                    </div>
-                    <div class="contact-info">
-                        <p><i class="fas fa-phone"></i> ${biz.phone}</p>
-                        <p><i class="fas fa-envelope"></i> ${biz.email}</p>
-                        <p><i class="fas fa-map-marker-alt"></i> ${biz.location}</p>
-                    </div>
-                    <a href="${biz.link}" class="btn-contact">${biz.btn}</a>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
+        // Get all business cards
         function filterBusinesses() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const category = document.getElementById('categoryFilter').value;
             const city = document.getElementById('cityFilter').value;
+            const cards = document.querySelectorAll('.business-card');
             
-            let filtered = businesses.filter(biz => {
-                const matchesSearch = biz.name.toLowerCase().includes(searchTerm) || 
-                                    biz.owner.toLowerCase().includes(searchTerm) ||
-                                    biz.tags.some(tag => tag.toLowerCase().includes(searchTerm));
-                const matchesCategory = category === '' || biz.category === category || biz.tags.includes(category);
-                const matchesCity = city === '' || biz.city === city;
+            cards.forEach(card => {
+                const name = card.dataset.name || '';
+                const owner = card.dataset.owner || '';
+                const cardCategory = card.dataset.category || '';
+                const cardCity = card.dataset.city || '';
+                const tags = card.dataset.tags || '';
                 
-                return matchesSearch && matchesCategory && matchesCity;
+                const matchesSearch = name.includes(searchTerm) || 
+                                    owner.includes(searchTerm) ||
+                                    tags.includes(searchTerm);
+                const matchesCategory = category === '' || cardCategory === category;
+                const matchesCity = city === '' || cardCity === city;
+                
+                if (matchesSearch && matchesCategory && matchesCity) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
             });
             
-            renderBusinesses(filtered);
+            // Show no results message if all hidden
+            const visibleCards = document.querySelectorAll('.business-card[style="display: block"], .business-card:not([style*="display"])');
+            const hasVisible = Array.from(cards).some(c => c.style.display !== 'none');
+            
+            let noResults = document.querySelector('.no-results-message');
+            if (!hasVisible) {
+                if (!noResults) {
+                    noResults = document.createElement('div');
+                    noResults.className = 'no-results-message';
+                    noResults.style.cssText = 'grid-column: 1 / -1; text-align: center; padding: 40px; color: #666;';
+                    noResults.innerHTML = 'No businesses found matching your criteria.';
+                    document.getElementById('businessGrid').appendChild(noResults);
+                }
+            } else if (noResults) {
+                noResults.remove();
+            }
         }
 
         function sortBusinesses() {
             const sortOrder = document.getElementById('sortOrder').value;
-            let filtered = businesses;
+            const grid = document.getElementById('businessGrid');
+            const cards = Array.from(document.querySelectorAll('.business-card'));
             
-            // Apply filter first
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const category = document.getElementById('categoryFilter').value;
-            const city = document.getElementById('cityFilter').value;
-            
-            filtered = businesses.filter(biz => {
-                const matchesSearch = biz.name.toLowerCase().includes(searchTerm) || 
-                                    biz.owner.toLowerCase().includes(searchTerm) ||
-                                    biz.tags.some(tag => tag.toLowerCase().includes(searchTerm));
-                const matchesCategory = category === '' || biz.category === category || biz.tags.includes(category);
-                const matchesCity = city === '' || biz.city === city;
-                
-                return matchesSearch && matchesCategory && matchesCity;
-            });
-            
-            // Then sort
             if (sortOrder === 'az') {
-                filtered.sort((a, b) => a.name.localeCompare(b.name));
+                cards.sort((a, b) => (a.dataset.name || '').localeCompare(b.dataset.name || ''));
             } else if (sortOrder === 'za') {
-                filtered.sort((a, b) => b.name.localeCompare(a.name));
+                cards.sort((a, b) => (b.dataset.name || '').localeCompare(a.dataset.name || ''));
             }
             
-            renderBusinesses(filtered);
+            cards.forEach(card => grid.appendChild(card));
         }
-
-        // Initial render
-        document.addEventListener('DOMContentLoaded', function() {
-            renderBusinesses(businesses);
-        });
     </script>
 
 <?php include 'include/footer.php'; ?>
