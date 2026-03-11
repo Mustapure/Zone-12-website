@@ -4,15 +4,15 @@
  * Handles user authentication sessions
  */
 
+// Session configuration (must be set BEFORE session_start)
+ini_set('session.cookie_httponly', 1);
+ini_set('session.use_strict_mode', 1);
+ini_set('session.cookie_lifetime', 0);
+
 // Start session if not already started
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-// Session configuration
-ini_set('session.cookie_httponly', 1);
-ini_set('session.use_strict_mode', 1);
-ini_set('session.cookie_lifetime', 0);
 
 // Define session variables
 define('SESSION_USER_ID', 'user_id');

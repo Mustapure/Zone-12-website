@@ -112,3 +112,62 @@ function loginUser($email, $password) {
     }
     
     // Get user from database
+    $stmt = $db->prepare("SELECT id, first_name, last_name, email, password, user_type, email_verified FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows === 0) {
+        $stmt->close();
+        return ['status' => 'error', 'message' => 'Invalid email or password'];
+    }
+    
+    $user = $result->fetch_assoc();
+    $stmt->close();
+    
+    // Check if email is verified
+    if (!$user['email_verified']) {
+        return ['status' => 'error', 'message' => 'Please verify your email before logging in'];
+    }
+    
+    // Verify password
+    if (!password_verify($password, $user['password'])) {
+        return ['status' => 'error', 'message' => 'Invalid email or password'];
+    }
+    
+    return [
+        'status' => 'success', 
+        'message' => 'Login successful',
+        'user' => [
+            'id' => $user['id'],
+            'first_name' => $user['first_name'],
+            'last_name' => $user['last_name'],
+            'email' => $user['email'],
+            'user_type' => $user['user_type']
+        ]
+    ];
+}
+
+/**
+ * Get user by email
+ * @param string $email User email
+ * @return array|null User data or null if not found
+ */
+function getUserByEmail($email) {
+    $db = getDB();
+    
+    $stmt = $db->prepare("SELECT id, first_name, last_name, email, password, user_type, email_verified FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows === 0) {
+        $stmt->close();
+        return null;
+    }
+    
+    $user = $result->fetch_assoc();
+    $stmt->close();
+    
+    return $user;
+}
