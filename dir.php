@@ -4,8 +4,7 @@ $page = 'dir';
 include 'include/header.php';
 
 // Include database config
-require_once 'config/database.php';
-require_once 'config/session.php';
+
 
 $db = getDB();
 

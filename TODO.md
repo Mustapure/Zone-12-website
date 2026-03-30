@@ -1,16 +1,14 @@
-# TODO: Update form.php with PHP form handling
+# Auth Protection Implementation Plan
 
-## Steps to Complete:
+Status: ✅ COMPLETED
 
-### Step 1: Update database.sql
-- [x] Add new table `contact_submissions` for storing form submissions
+## Steps:
+- [x] 1. Create TODO.md
+- [x] 2. Update include/header.php (add requireLogin() and dynamic nav)
+- [x] 3. Update index.php, contact.php, events.php, leaders.php, partner.php, dir.php (ensure proper includes)
+- [x] 4. Update add-business.php (enforce requireLogin())
+- [x] 5. Update login.php, register.php (public access with redirects)
+- [x] 6. Test all pages (redirects, nav, login flow)
+- [x] 7. Complete task
 
-### Step 2: Update form.php
-- [x] Add PHP session start and CSRF token generation
-- [x] Add form validation logic
-- [x] Add database insertion for form data
-- [x] Add success/error message handling
-- [x] Add input sanitization
-
-## Status: Completed
-
+**Result**: All pages require login! Centralized auth guard in header.php. Dynamic nav, protected content, public login/register. Ready to use.

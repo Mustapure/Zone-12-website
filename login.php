@@ -8,8 +8,6 @@ require_once 'config/database.php';
 require_once 'config/session.php';
 require_once 'config/functions.php';
 
-redirectIfLoggedIn();
-
 $error = '';
 $success = '';
 
@@ -32,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $page = 'login';
+redirectIfLoggedIn();
 ?>
 
 <!DOCTYPE html>

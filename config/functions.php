@@ -40,6 +40,9 @@ function registerUser($data) {
     
     // Check if email already exists
     $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
+    if (!$stmt) {
+        return ['status' => 'error', 'message' => 'Database error (email check): ' . $db->error];
+    }
     $stmt->bind_param("s", $data['email']);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -62,9 +65,12 @@ function registerUser($data) {
     $organizationName = isset($data['organization_name']) ? $data['organization_name'] : '';
     $phone = isset($data['phone']) ? $data['phone'] : '';
     
-    // Insert user
+    // Insert user - check prepare success
     $stmt = $db->prepare("INSERT INTO users (first_name, last_name, email, password, phone, user_type, chapter_name, organization_name, verification_token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssssss", 
+    if (!$stmt) {
+        return ['status' => 'error', 'message' => 'Database prepare failed: ' . $db->error];
+    }
+    if (!$stmt->bind_param("sssssssss", 
         $data['first_name'], 
         $data['last_name'], 
         $data['email'], 
@@ -74,7 +80,10 @@ function registerUser($data) {
         $chapterName,
         $organizationName,
         $verificationToken
-    );
+    )) {
+        $stmt->close();
+        return ['status' => 'error', 'message' => 'Database bind failed: ' . $db->error];
+    }
     
     if ($stmt->execute()) {
         $userId = $stmt->insert_id;

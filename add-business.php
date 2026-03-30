@@ -4,7 +4,7 @@
  * Allows JCI members to add their businesses to the directory
  */
 
-session_start();
+
 
 // Include required files
 require_once 'config/database.php';
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Please enter a valid email address.';
     } else {
         // Get user_id if logged in
-        $userId = $isLoggedIn ? getCurrentUserId() : null;
+    $userId = getCurrentUserId();
         
         // Insert business
         $stmt = $db->prepare("INSERT INTO businesses (user_id, business_name, owner_name, owner_jci_name, email, phone, website, address, city, category, description, tags, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')");
@@ -72,61 +72,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Add Business - JCI Zone 12</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        jci: { DEFAULT: '#0096D6', dark: '#006699' }
-                    }
-                }
-            }
-        }
-    </script>
-</head>
+<?php 
+$page = 'add-business'; 
+$page_title = 'Add Business - JCI Zone 12';
+include 'include/header.php'; 
+
+// Remove redundant $isLoggedIn since header enforces login
+unset($isLoggedIn);
+?>
+
 <body class="bg-gray-50 min-h-screen">
 
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="index.php" class="flex items-center gap-2">
-                        <img src="JCI Zone.png" alt="JCI Zone 12" class="h-8">
-                        <span class="font-bold text-xl text-jci">JCI Zone 12</span>
-                    </a>
-                </div>
-                <div class="flex items-center gap-4">
-                    <a href="dir.php" class="text-gray-600 hover:text-jci">Directory</a>
-                    <?php if ($isLoggedIn): ?>
-                        <a href="dashboard.php" class="text-gray-600 hover:text-jci">Dashboard</a>
-                        <a href="logout.php" class="text-gray-600 hover:text-jci">Logout</a>
-                    <?php else: ?>
-                        <a href="login.php" class="text-jci font-semibold">Login</a>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
-    </nav>
+
 
     <div class="max-w-3xl mx-auto px-4 py-8">
         <div class="bg-white rounded-lg shadow-lg p-8">
             <h1 class="text-2xl font-bold text-gray-800 mb-2">Add Your Business</h1>
             <p class="text-gray-600 mb-6">List your business in the JCI Zone 12 Directory</p>
             
-            <?php if (!$isLoggedIn): ?>
-                <div class="bg-blue-50 border-l-4 border-blue-500 text-blue-700 p-4 rounded mb-6">
-                    <p><i class="fas fa-info-circle mr-2"></i>You are submitting as a guest. <a href="login.php" class="font-semibold underline">Login</a> to track and manage your listings.</p>
-                </div>
-            <?php endif; ?>
+
 
             <?php if ($message): ?>
                 <div class="bg-green-50 border-l-4 border-green-500 text-green-700 p-4 rounded mb-6">
@@ -242,6 +206,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-</body>
-</html>
+<?php include 'include/footer.php'; ?>
 
