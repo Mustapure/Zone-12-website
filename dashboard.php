@@ -12,6 +12,7 @@ require_once 'config/database.php';
 require_once 'config/functions.php';
 require_once 'config/session.php';
 
+
 // Require login - redirect to login if not authenticated
 requireLogin();
 
@@ -24,6 +25,7 @@ $userType = getCurrentUserType();
 $page = 'dashboard';
 ?>
 
+<?php include 'include/header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
