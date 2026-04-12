@@ -6,6 +6,8 @@
 - [ ] Test changes in browser
 - [ ] Complete task
 
-**Note: Updated dashboard-new.php created with changes. Replace dashboard.php after testing.**
+dashboard.php task complete. dashboard-new.php ready.
+
+New task in TODO-events.md.
 
 
