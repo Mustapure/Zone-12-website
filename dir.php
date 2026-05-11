@@ -35,10 +35,11 @@ if ($cityResult && $cityResult->num_rows > 0) {
                 <i class="fas fa-plus mr-2"></i>Add Your Business
             </a>
         <?php else: ?>
-            <a href="login.php" class="inline-block mt-4 px-6 py-2 bg-white text-jci-dark font-semibold rounded-lg hover:bg-gray-100 transition">
-                <i class="fas fa-sign-in-alt mr-2"></i>Login to Add Business
+            <a href="add-business.php" class="inline-block mt-4 px-6 py-2 bg-white text-jci-dark font-semibold rounded-lg hover:bg-gray-100 transition">
+                <i class="fas fa-plus mr-2"></i>Add Your Business
             </a>
         <?php endif; ?>
+
     </header>
 
     <div class="container">

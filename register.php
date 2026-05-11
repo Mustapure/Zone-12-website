@@ -1,8 +1,9 @@
 <?php
-/**
- * JCI Zone 12 - Registration Page
- * User registration form
- */
+// Registration removed.
+http_response_code(410);
+echo "Registration has been disabled.";
+exit;
+
 
 require_once 'config/database.php';
 require_once 'config/session.php';

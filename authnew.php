@@ -1,10 +1,7 @@
 <?php
-/**
- * Authentication Handler for JCI Zone 12
- * Processes login form submission
- */
+// Auth removed: endpoint kept only to prevent redirects.
+// (Login functionality has been deleted.)
 
-session_start();
 
 // Include required files
 require_once 'config/database.php';

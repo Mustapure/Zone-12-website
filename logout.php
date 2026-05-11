@@ -1,8 +1,9 @@
 <?php
-/**
- * Logout Handler for JCI Zone 12
- * Destroys user session and redirects to login
- */
+// Logout removed.
+http_response_code(410);
+echo "Logout has been disabled.";
+exit;
+
 
 session_start();
 

@@ -1,13 +1,1 @@
-# Task: Fix dashboard.php header include
-
-## Steps:
-- [x] Get plan approval from user
-- [x] Refactor dashboard.php: Add $page='dashboard'; include header.php; remove manual HTML head/nav; wrap content in main.main-content; add footer.php include
-- [ ] Test changes in browser
-- [ ] Complete task
-
-dashboard.php task complete. dashboard-new.php ready.
-
-New task in TODO-events.md.
-
-
+# Events Consolidation Task - COMPLETE\n\n## Steps:\n1. [x] Create TODO.md (this file)\n2. [x] Update events.php with consolidated content from events-updated.php\n3. [x] Update TODO-events.md as complete\n4. [x] Delete redundant files (events-updated.php, events-final.php)\n5. [x] Test events.php\n6. [x] Mark all complete in TODO.md\n\n**Single events.php now contains the advanced 5-column grid with 10 events. All redundant files removed.**

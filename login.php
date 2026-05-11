@@ -1,8 +1,9 @@
 <?php
-/**
- * JCI Zone 12 - Login Page
- * User authentication login form
- */
+// Login page removed.
+http_response_code(410);
+echo "Login has been disabled.";
+exit;
+
 
 require_once 'config/database.php';
 require_once 'config/session.php';

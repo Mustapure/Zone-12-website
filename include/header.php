@@ -16,10 +16,8 @@
 
 <body>
 
-<?php 
-require_once 'config/session.php'; 
-requireLogin(); 
-?>
+<?php require_once 'config/session.php'; ?>
+
 
 
     <!-- Top Navigation Bar -->
@@ -28,13 +26,16 @@ requireLogin();
             <img src="JCI Zone.png" alt="JCI Logo">
         </a>
         <div class="navbar-menu">
-            <?php if (isLoggedIn()): 
+<?php 
                 $userName = getCurrentUserName() ?: getCurrentUserEmail();
             ?>
-            <a href="dashboard.php" class="nav-item <?php echo ($page == 'dashboard') ? 'active' : ''; ?>">
-                <i class="fas fa-tachometer-alt"></i> Dashboard
+
+            <a href="index.php" class="nav-item <?php echo ($page == 'home') ? 'active' : ''; ?>">
+                <i class="fas fa-home"></i> Home
             </a>
+
             <a href="dir.php" class="nav-item <?php echo ($page == 'dir') ? 'active' : ''; ?>">
+
                 <i class="fas fa-address-book"></i> DIR
             </a>
             <a href="add-business.php" class="nav-item <?php echo ($page == 'add-business') ? 'active' : ''; ?>">
@@ -52,19 +53,8 @@ requireLogin();
             <span class="nav-user">
                 <i class="fas fa-user"></i> Hi, <?php echo htmlspecialchars($userName); ?>
             </span>
-            <a href="logout.php" class="nav-item login-btn bg-red-500 hover:bg-red-600">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </a>
-            <?php else: ?>
-            <a href="dashboard.php" class="nav-item <?php echo ($page == 'dashboard') ? 'active' : ''; ?>">
-                <i class="fas fa-tachometer-alt"></i> Dashboard
-            </a>
-            <a href="dir.php" class="nav-item <?php echo ($page == 'dir') ? 'active' : ''; ?>">
-                <i class="fas fa-address-book"></i> DIR
-            </a>
-            <a href="login.php" class="nav-item login-btn">Login</a>
-            <a href="register.php" class="nav-item login-btn bg-green-500 hover:bg-green-600 ml-2">Register</a>
-            <?php endif; ?>
+        
         </div>
+
     </nav>
 

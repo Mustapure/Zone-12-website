@@ -96,22 +96,16 @@ function destroyUserSession() {
 /**
  * Redirect to login page if not logged in
  */
+// Auth has been removed. keep function as no-op for backward compatibility.
 function requireLogin() {
-    if (!isLoggedIn()) {
-        header("Location: login.php");
-        exit;
-    }
+    return;
 }
 
-/**
- * Redirect to dashboard if already logged in
- */
+// Auth has been removed. keep function as no-op for backward compatibility.
 function redirectIfLoggedIn() {
-    if (isLoggedIn()) {
-        header("Location: dashboard.php");
-        exit;
-    }
+    return;
 }
+
 
 /**
  * Check if session has expired (30 minutes)

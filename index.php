@@ -26,7 +26,8 @@
                     <div class="slide-content">
                         <h1>Build Your Future</h1>
                         <p>Develop leadership skills and create lasting impact</p>
-                        <a href="login.php" class="slider-btn">Get Started</a>
+                        <a href="dir.php" class="slider-btn">Explore Directory</a>
+
                     </div>
                 </div>
             </div>

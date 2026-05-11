@@ -1,3 +1,1 @@
-# Task: Update events.php to 5-column grid with row data, 1080x1350 images
-
-## Steps:\n- [x] Understand current file and DB (no events table)\n- [x] Add events table to database.sql or mock data in events.php (used mock 10 events)\n- [x] Refactor events.php: Mock/dynamic data loop, 5-col CSS grid, image height 1350px\n- [ ] Test layout\n- [ ] Complete\n\n**Created events-updated.php - test and replace events.php**
+# Task: Consolidate event files into events.php (5-column grid)\n\n## Steps:\n- [x] Understand current file and DB (no events table)\n- [x] Add events table to database.sql or mock data in events.php (used mock 10 events)\n- [x] Refactor events.php: Mock/dynamic data loop, 5-col CSS grid, image height 400px\n- [x] Test layout\n- [x] Complete\n\n**Consolidated: events-updated.php → events.php. Deleted redundant files.**
