@@ -38,9 +38,7 @@
 
                 <i class="fas fa-address-book"></i> DIR
             </a>
-            <a href="add-business.php" class="nav-item <?php echo ($page == 'add-business') ? 'active' : ''; ?>">
-                <i class="fas fa-plus"></i> Add Business
-            </a>
+
             <a href="leaders.php" class="nav-item <?php echo ($page == 'leaders') ? 'active' : ''; ?>">
                 <i class="fas fa-users"></i> Leaders
             </a>
@@ -50,6 +48,10 @@
             <a href="partner.php" class="nav-item <?php echo ($page == 'partner') ? 'active' : ''; ?>">
                 <i class="fas fa-handshake"></i> Partner
             </a>
+            <a href="contact.php" class="nav-item <?php echo ($page == 'contact') ? 'active' : ''; ?>">
+                <i class="fas fa-envelope"></i> Contact Us
+            </a>
+
             <span class="nav-user">
                 <i class="fas fa-user"></i> Hi, <?php echo htmlspecialchars($userName); ?>
             </span>
