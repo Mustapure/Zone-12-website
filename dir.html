@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <title>DIR - JCI Zone 12</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+      <img src="JCI Zone.png" alt="JCI Logo">
+    </a>
+    <div class="navbar-menu">
+      <a href="index.html" class="nav-item">
+        <i class="fas fa-home"></i> Home
+      </a>
+      <a href="dir.html" class="nav-item active">
+        <i class="fas fa-address-book"></i> DIR
+      </a>
+      <a href="leaders.html" class="nav-item">
+        <i class="fas fa-users"></i> Leaders
+      </a>
+      <a href="events.html" class="nav-item">
+        <i class="fas fa-calendar-alt"></i> Events
+      </a>
+      <a href="partner.html" class="nav-item">
+        <i class="fas fa-handshake"></i> Partner
+      </a>
+      <a href="contact.html" class="nav-item">
+        <i class="fas fa-envelope"></i> Contact Us
+      </a>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <header class="hero-section">
+      <h1>Business Directory</h1>
+      <p>Static directory page (HTML). Dynamic DB listing removed for this HTML version.</p>
+      <a href="add-business.php" class="inline-block mt-4 px-6 py-2 bg-white text-jci-dark font-semibold rounded-lg hover:bg-gray-100 transition">
+        <i class="fas fa-plus mr-2"></i>Add Your Business
+      </a>
+    </header>
+
+    <div class="container">
+      <div class="search-filter-bar">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Search businesses..." onkeyup="filterBusinesses()">
+        </div>
+        <div class="filter-box">
+          <select id="categoryFilter" onchange="filterBusinesses()">
+            <option value="">All Categories</option>
+            <option value="Services">Services</option>
+            <option value="Products">Products</option>
+            <option value="Service Provider">Service Provider</option>
+          </select>
+        </div>
+        <div class="filter-box">
+          <select id="cityFilter" onchange="filterBusinesses()">
+            <option value="">All Cities</option>
+            <option value="Zone 12">Zone 12</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Bangalore">Bangalore</option>
+          </select>
+        </div>
+        <div class="sort-box">
+          <select id="sortOrder" onchange="sortBusinesses()">
+            <option value="">Sort By</option>
+            <option value="az">Name (A-Z)</option>
+            <option value="za">Name (Z-A)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="dir-grid" id="businessGrid">
+        <div class="business-card" data-name="example services" data-owner="jci member" data-category="Services" data-city="Mumbai" data-tags="marketing,seo">
+          <h3 class="business-name">Example Business (Services)</h3>
+          <p class="owner-name">Owned by: JCI Member</p>
+          <div class="tag-container">
+            <span class="tag">Services</span>
+            <span class="tag">Marketing</span>
+            <span class="tag">SEO</span>
+          </div>
+          <div class="contact-info">
+            <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+            <p><i class="fas fa-envelope"></i> business@email.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> Mumbai</p>
+          </div>
+          <a href="mailto:business@email.com" class="btn-contact">Contact</a>
+        </div>
+
+        <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #666;">
+          Use search/filter to hide/show sample cards.
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .hero-section { margin-top: 70px; padding: 60px 20px; text-align:center; background: linear-gradient(135deg, #0096D6 0%, #007bb5 100%); color: white; }
+      .hero-section h1 { font-size: 2.5rem; margin-bottom: 15px; font-weight: 700; }
+      .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+      .dir-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
+      .business-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-left: 5px solid var(--jci-blue); }
+      .business-name { color: var(--jci-blue); font-size: 1rem; margin-bottom: 5px; font-weight: 700; }
+      .owner-name { font-size: 0.8rem; color: #666; margin-bottom: 10px; font-style: italic; }
+      .tag-container { margin: 8px 0; display: flex; flex-wrap: wrap; gap: 5px; }
+      .tag { background: #eef9ff; color: var(--jci-blue); font-size: 0.65rem; padding: 3px 8px; border-radius: 20px; font-weight: 600; }
+      .contact-info { margin-top: 10px; font-size: 0.8rem; color: #444; }
+      .contact-info p { margin: 3px 0; display: flex; align-items:center; gap: 5px; }
+      .contact-info i { color: var(--jci-blue); width: 12px; }
+      .btn-contact { display:inline-block; margin-top: 10px; padding: 6px 15px; background: var(--jci-blue); color:white; text-decoration:none; border-radius: 5px; font-size: 0.75rem; transition: 0.3s; }
+      .btn-contact:hover { background:#007bb5; }
+
+      .search-filter-bar { display:flex; gap:15px; margin-bottom: 30px; flex-wrap: wrap; }
+      .search-box { flex:2; min-width: 250px; position: relative; }
+      .search-box i { position:absolute; left: 15px; top: 50%; transform: translateY(-50%); color:#999; }
+      .search-box input { width:100%; padding: 12px 15px 12px 40px; border:1px solid #ddd; border-radius:8px; font-size:1rem; }
+      .filter-box, .sort-box { flex:1; min-width: 150px; }
+      .filter-box select, .sort-box select { width:100%; padding: 12px 15px; border:1px solid #ddd; border-radius:8px; font-size:1rem; background:white; cursor:pointer; }
+
+      @media (max-width: 1200px) { .dir-grid{ grid-template-columns: repeat(4, 1fr);} }
+      @media (max-width: 992px) { .dir-grid{ grid-template-columns: repeat(3, 1fr);} }
+      @media (max-width: 768px) { .dir-grid{ grid-template-columns: repeat(2, 1fr);} .search-filter-bar{flex-direction:column;} .search-box,.filter-box,.sort-box{width:100%;} }
+      @media (max-width: 480px) { .dir-grid{ grid-template-columns: 1fr;} }
+    </style>
+
+    <script>
+      function filterBusinesses(){
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        const category = document.getElementById('categoryFilter').value;
+        const city = document.getElementById('cityFilter').value;
+        const cards = document.querySelectorAll('.business-card[data-name]');
+        cards.forEach(card=>{
+          const name = (card.dataset.name||'');
+          const owner = (card.dataset.owner||'');
+          const cardCategory = (card.dataset.category||'');
+          const cardCity = (card.dataset.city||'');
+          const tags = (card.dataset.tags||'');
+          const matchesSearch = name.includes(searchTerm)||owner.includes(searchTerm)||tags.includes(searchTerm);
+          const matchesCategory = !category || cardCategory===category;
+          const matchesCity = !city || cardCity===city;
+          card.style.display = (matchesSearch && matchesCategory && matchesCity) ? 'block' : 'none';
+        });
+      }
+      function sortBusinesses(){
+        const sortOrder = document.getElementById('sortOrder').value;
+        const grid = document.getElementById('businessGrid');
+        const cards = Array.from(document.querySelectorAll('.business-card[data-name]'));
+        if(sortOrder==='az') cards.sort((a,b)=>a.dataset.name.localeCompare(b.dataset.name));
+        if(sortOrder==='za') cards.sort((a,b)=>b.dataset.name.localeCompare(a.dataset.name));
+        cards.forEach(c=>grid.appendChild(c));
+      }
+    </script>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Join our Newsletter</h4>
+        <form class="newsletter-form">
+          <input type="text" placeholder="Your Name">
+          <input type="email" placeholder="Your Email Address">
+          <label><input type="checkbox"> I agree to receive email updates</label>
+          <button type="submit" class="subscribe-btn">Subscribe</button>
+        </form>
+      </div>
+      <div class="footer-section">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">What We Do</a></li>
+          <li><a href="partners.html">Partners</a></li>
+          <li><a href="events.html">News and Events</a></li>
+          <li><a href="media.html">Media</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">JCI Senate</a></li>
+          <li><a href="#">JCI Foundation</a></li>
+          <li><a href="#">JCI Masterclass</a></li>
+          <li><a href="#">JCI Club 100</a></li>
+          <li><a href="#">JCI Store</a></li>
+          <li><a href="#">Resources</a></li>
+          <li><a href="#">Branding</a></li>
+          <li><a href="#">Toolkits</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Follow us</h4>
+        <div class="social-links">
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" title="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" title="Tiktok"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <div style="margin-top:10px;"><a href="#"><i class="fas fa-download"></i> Download JCI App</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><strong>Official Linktr.ee</strong> | &copy; <span id="year"></span> JCI India Zone 12. All Rights Reserved.</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
