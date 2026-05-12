@@ -14,10 +14,11 @@
 <body>
 
     <!-- Top Navigation Bar -->
-    <nav class="navbar">
+<nav class="navbar">
         <a href="index.html" class="navbar-brand">
             <img src="JCI Zone.png" alt="JCI Logo">
         </a>
+
         <div class="navbar-menu">
             <a href="index.html" class="nav-item active">
                 <i class="fas fa-home"></i> Home
@@ -321,22 +322,34 @@
     </main>
 
     <!-- Join JCI Section -->
-    <!-- Note: original page included form.php (PHP). Replace with a static form section below. -->
-    <section class="main-content" style="padding:40px 20px;">
-        <h3 style="margin:0 0 10px;">Join JCI</h3>
-        <p style="margin:0 0 20px; color:#666;">Fill the form below to join JCI Zone 12.</p>
-        <form action="#" method="post" class="space-y-4">
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
-                <input type="text" name="name" placeholder="Full Name" required style="padding:12px; width:100%; border:1px solid #ddd; border-radius:8px;" />
-                <input type="email" name="email" placeholder="Email Address" required style="padding:12px; width:100%; border:1px solid #ddd; border-radius:8px;" />
+    <section class="main-content" style="padding:0;">
+      <div class="container" style="margin:0 auto; padding:40px 20px;">
+        <div class="join-jci-container" style="display:flex; flex-wrap: wrap; max-width:1100px; margin:0 auto; background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+          <div class="join-jci-image" style="flex:1; min-width: 300px; position:relative; min-height:450px;">
+            <img src="join.jpg" alt="JCI Zone 12" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <div class="image-overlay" style="position:absolute; bottom:0; left:0; right:0; padding:40px 30px; background:linear-gradient(transparent, rgba(0,0,0,0.85)); color:#fff;">
+              <h3>Join the Movement</h3>
+              <p>Become part of a global network of young leaders creating positive change in communities worldwide.</p>
             </div>
-            <div style="margin-top:16px; display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
-                <input type="tel" name="phone" placeholder="Phone Number" required style="padding:12px; width:100%; border:1px solid #ddd; border-radius:8px;" />
-                <input type="text" name="city" placeholder="Location" required style="padding:12px; width:100%; border:1px solid #ddd; border-radius:8px;" />
-            </div>
-            <textarea name="message" rows="4" placeholder="Why do you want to join JCI?" required style="margin-top:16px; padding:12px; width:100%; border:1px solid #ddd; border-radius:8px;"></textarea>
-            <button type="submit" style="margin-top:16px; padding:12px 20px; background:#0096D6; color:white; border:none; border-radius:8px; font-weight:700;">Submit</button>
-        </form>
+          </div>
+
+          <div class="join-jci-form" style="flex:1.2; min-width: 300px; padding:50px;">
+            <h2 style="color:var(--jci-blue, #0096D6); margin-bottom:10px;">Be a Part of JCI</h2>
+            <p style="color:#666; margin-bottom:25px;">Join a global movement of young leaders creating positive change.</p>
+
+            <form action="#" method="post" onsubmit="return false;" style="display:flex; flex-direction:column; gap:15px; margin-top:25px;">
+              <input type="text" name="name" placeholder="Full Name" required style="width:100%; padding:12px 15px; border:1px solid #ddd; border-radius:8px; font-family:inherit; font-size: 1rem;">
+              <div class="form-row" style="display:flex; gap:15px; flex-wrap: wrap;">
+                <input type="email" name="email" placeholder="Email Address" required style="flex: 1; min-width: 140px; padding:12px 15px; border:1px solid #ddd; border-radius:8px; font-family:inherit; font-size: 1rem;">
+                <input type="tel" name="phone" placeholder="Phone Number" required style="flex: 1; min-width: 140px; padding:12px 15px; border:1px solid #ddd; border-radius:8px; font-family:inherit; font-size: 1rem;">
+              </div>
+              <input type="text" name="city" placeholder="Location" required style="width:100%; padding:12px 15px; border:1px solid #ddd; border-radius:8px; font-family:inherit; font-size: 1rem;">
+              <textarea name="message" placeholder="Why do you want to join JCI?" style="min-height:100px; resize:vertical; width:100%; padding:12px 15px; border:1px solid #ddd; border-radius:8px; font-family:inherit; font-size: 1rem;" ></textarea>
+              <button type="submit" style="padding:15px; background-color:var(--jci-blue, #0096D6); color:#fff; border:none; border-radius:8px; font-weight:bold; cursor:pointer; transition:0.3s; font-size: 1rem;">🔵 Join JCI</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
@@ -359,12 +372,12 @@
                 <h4>Menu</h4>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-<li><a href="about.html">About</a></li>
-                    <li><a href="services.php">What We Do</a></li>
-                    <li><a href="partners.php">Partners</a></li>
-                    <li><a href="events.php">News and Events</a></li>
-                    <li><a href="media.php">Media</a></li>
-                    <li><a href="contact.php">Contact Us</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">What We Do</a></li>
+                    <li><a href="partners.html">Partners</a></li>
+                    <li><a href="events.html">News and Events</a></li>
+                    <li><a href="media.html">Media</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>
 
@@ -413,4 +426,3 @@
 </body>
 
 </html>
-
