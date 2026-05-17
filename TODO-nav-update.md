@@ -2,8 +2,6 @@
 
 - [x] Inspect existing nav markup in leaders.html, partner.html, contact.html
 - [x] Inspect shared styles in css/common.css and page styles in css/index.css
-- [ ] If any hamburger/mobile toggle markup exists, remove it (button/checkbox/div) and related CSS/JS
-- [ ] Ensure navbar-menu is always visible and wraps on small screens
-- [ ] Verify pages: /index.html, /dir.html, /leaders.html, /events.html, /partner.html, /contact.html
-
+- [x] Confirm hamburger/menu toggle markup/CSS/JS is not present on these pages (nav already always visible)
+- [x] Add section to index.html: "Why Join JCI India?"
 

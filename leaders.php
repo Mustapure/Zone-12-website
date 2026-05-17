@@ -8,31 +8,283 @@
     <div class="container">
         <div class="profile-grid president-section">
             <div class="profile-card">
-                <img src="https://jci.cc/wp-content/uploads/2026/01/WPAlejandra-Castillo-1-200x300.png" alt="Alejandra Castillo" class="profile-image">
+                <img src="img/Img40.png" alt="Leader 1" class="profile-image">
                 <div class="profile-info">
-                    <h3 class="profile-name">Alejandra Castillo</h3>
+                    <h3 class="profile-name">Leader 1</h3>
                     <p class="profile-position">President</p>
-                    <p class="profile-country">JCI BOLIVIA</p>
+                    <p class="profile-country">JCI Zone 12</p>
                 </div>
             </div>
         </div>
 
         <div class="profile-grid">
             <div class="profile-card">
-                <img src="https://jci.cc/wp-content/uploads/2026/01/Kengo-Suzuki-200x300.png" alt="Kengo Suzuki" class="profile-image">
+                <img src="img/img2.jpeg" alt="Leader 2" class="profile-image">
                 <div class="profile-info">
-                    <h3 class="profile-name">Kengo Suzuki</h3>
+                    <h3 class="profile-name">Leader 2</h3>
                     <p class="profile-position">Vice President</p>
-                    <p class="profile-country">JCI JAPAN</p>
+                    <p class="profile-country">JCI Zone 12</p>
                 </div>
             </div>
 
             <div class="profile-card">
-                <img src="https://jci.cc/wp-content/uploads/2026/01/Naranbaatar-Otgonchuluun-200x300.png" alt="Naranbaatar Otgonchuluun" class="profile-image">
+                <img src="img/img3.jpeg" alt="Leader 3" class="profile-image">
                 <div class="profile-info">
-                    <h3 class="profile-name">Naranbaatar Otgonchuluun</h3>
+                    <h3 class="profile-name">Leader 3</h3>
                     <p class="profile-position">Vice President</p>
-                    <p class="profile-country">JCI MONGOLIA</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img4.jpeg" alt="Leader 4" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 4</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img5.jpeg" alt="Leader 5" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 5</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img6.jpeg" alt="Leader 6" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 6</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img7.jpeg" alt="Leader 7" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 7</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img8.jpeg" alt="Leader 8" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 8</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img9.jpeg" alt="Leader 9" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 9</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img10.jpeg" alt="Leader 10" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 10</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img11.jpeg" alt="Leader 11" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 11</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img12.jpeg" alt="Leader 12" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 12</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img13.jpeg" alt="Leader 13" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 13</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img14.jpeg" alt="Leader 14" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 14</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img15.jpeg" alt="Leader 15" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 15</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img16.jpeg" alt="Leader 16" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 16</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img17.jpeg" alt="Leader 17" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 17</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img18.jpeg" alt="Leader 18" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 18</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img19.jpeg" alt="Leader 19" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 19</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img20.jpeg" alt="Leader 20" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 20</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img21.jpeg" alt="Leader 21" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 21</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img22.jpeg" alt="Leader 22" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 22</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img23.jpeg" alt="Leader 23" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 23</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img24.jpeg" alt="Leader 24" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 24</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img25.jpeg" alt="Leader 25" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 25</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img26.jpeg" alt="Leader 26" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 26</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img27.jpeg" alt="Leader 27" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 27</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img28.jpeg" alt="Leader 28" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 28</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img29.jpeg" alt="Leader 29" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 29</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img30.jpeg" alt="Leader 30" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 30</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/img31.jpeg" alt="Leader 31" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Leader 31</h3>
+                    <p class="profile-position">Board Member</p>
+                    <p class="profile-country">JCI Zone 12</p>
                 </div>
             </div>
         </div>
@@ -61,9 +313,9 @@
 
         .profile-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 0 auto 40px;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+            margin: 0 auto 30px;
             max-width: 1000px;
         }
 
@@ -88,31 +340,31 @@
 
         .profile-image {
             width: 100%;
-            aspect-ratio: 2/3;
+            aspect-ratio: 1/1.2;
             object-fit: cover;
             background: #e0e0e0;
         }
 
         .profile-info {
-            padding: 20px;
+            padding: 14px;
         }
 
         .profile-name {
             color: var(--jci-blue);
-            font-size: 1.2rem;
+            font-size: 1.0rem;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .profile-position {
             color: #555;
-            font-size: 0.95rem;
-            margin-bottom: 5px;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
         }
 
         .profile-country {
             color: #888;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
         }
     </style>
