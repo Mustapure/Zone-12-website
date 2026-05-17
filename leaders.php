@@ -10,8 +10,8 @@
             <div class="profile-card">
                 <img src="img/Img40.png" alt="Leader 1" class="profile-image">
                 <div class="profile-info">
-                    <h3 class="profile-name">Leader 1</h3>
-                    <p class="profile-position">President</p>
+                    <h3 class="profile-name">JC Anil Kumar Dhoti</h3>
+                    <p class="profile-position">Zone President</p>
                     <p class="profile-country">JCI Zone 12</p>
                 </div>
             </div>
