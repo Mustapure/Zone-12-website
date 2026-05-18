@@ -1,331 +1,826 @@
-/* Index Page Specific Styles */
+/* ============================================================
+   JCI Zone 12 — Home Page (index.css)
+   ============================================================ */
 
-/* Welcome Section */
-.welcome-section {
-    text-align: center;
-    margin-bottom: 40px;
+/* ============================================================
+   HERO SLIDER
+   ============================================================ */
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 560px;
+  max-height: 800px;
+  overflow: hidden;
+  background: var(--dark);
+  margin-top: var(--navbar-h);
 }
 
-.welcome-section h2 {
-    color: var(--jci-blue);
-    font-size: 2rem;
-    margin-bottom: 10px;
+.slider-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.welcome-section p {
-    color: #666;
-    font-size: 1.1rem;
+.slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Creed, Vision & Mission Section */
+.slide.active { opacity: 1; }
+
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(13, 27, 42, 0.88) 0%,
+    rgba(0, 119, 182, 0.65) 100%
+  );
+}
+
+.slide-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  max-width: 800px;
+  padding: 0 24px;
+}
+
+.slide-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.9);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  margin-bottom: 20px;
+}
+
+.slide-content h1 {
+  font-size: clamp(2rem, 5.5vw, 3.8rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 18px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.slide-content p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: rgba(255,255,255,0.88);
+  margin-bottom: 36px;
+  line-height: 1.7;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slide-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Slider Dots */
+.slider-dots {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+
+.slider-dot.active {
+  background: #fff;
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* Slider Arrows */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: var(--transition-base);
+}
+
+.slider-arrow:hover {
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.slider-arrow-prev { left: 24px; }
+.slider-arrow-next { right: 24px; }
+
+/* ============================================================
+   IMPACT STATS BAR
+   ============================================================ */
+.stats-bar {
+  background: var(--dark);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-bar-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 32px 16px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+}
+
+.stat-item:last-child { border-right: none; }
+
+.stat-item::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 40px;
+  height: 3px;
+  background: var(--primary-light);
+  border-radius: 2px;
+  transition: transform 0.5s ease;
+}
+
+.stat-item:hover::before {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.stat-number {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.stat-number span {
+  color: var(--primary-light);
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ============================================================
+   CREED, VISION & MISSION — Side-by-Side President & CVM Design
+   ============================================================ */
 .cvm-section {
-    margin: 30px 0;
+  padding: 100px 0 120px;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
 }
 
-.cvm-section-title {
-    text-align: center;
-    margin-bottom: 30px;
+/* President Section Layout */
+.cvm-layout-grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 60px;
+  align-items: center;
 }
 
-.cvm-section-title h3 {
-    color: var(--jci-blue);
-    font-size: 1.8rem;
-    margin-bottom: 8px;
+/* Left side: Premium President Photo Card */
+.cvm-president-photo-wrap {
+  position: relative;
+  border-radius: 24px;
+  padding: 4px;
+  background: linear-gradient(135deg, #0077b6 0%, #ff6b35 100%);
+  box-shadow: 0 20px 40px rgba(0, 119, 182, 0.35);
+  overflow: hidden;
 }
 
-.cvm-section-title p {
-    color: #666;
-    font-size: 1rem;
+.cvm-president-photo-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(13, 27, 42, 0.85) 100%);
+  z-index: 2;
+  border-radius: 20px;
 }
 
-.cvm-cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+.cvm-president-img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 20px;
+  display: block;
+  transition: transform 0.6s ease;
 }
 
-.cvm-card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
+.cvm-president-photo-wrap:hover .cvm-president-img {
+  transform: scale(1.03);
 }
 
-.cvm-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+.cvm-president-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  z-index: 3;
 }
 
-.cvm-card h4 {
-    color: var(--jci-blue);
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.cvm-president-badge h4 {
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 4px;
 }
 
-.cvm-card p {
-    color: #555;
-    line-height: 1.7;
-    font-size: 0.95rem;
+.cvm-president-badge p {
+  color: var(--primary-light);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.creed-list {
-    list-style: none;
-    padding: 0;
+/* Right side: Elegant JCI details & Creed/Vision/Mission */
+.cvm-president-content-wrap {
+  display: flex;
+  flex-direction: column;
 }
 
-.creed-list li {
-    color: #555;
-    line-height: 1.8;
-    padding-left: 20px;
-    position: relative;
-    margin-bottom: 8px;
+.cvm-sub-label {
+  color: var(--primary-light);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
 }
 
-.creed-list li::before {
-    content: "•";
-    color: var(--jci-blue);
-    position: absolute;
-    left: 0;
-    font-weight: bold;
+.cvm-president-name {
+  color: #fff;
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
 }
 
-/* Highlights Section */
-.highlights-section {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    margin-top: 30px;
+.cvm-creed-intro {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 14px;
 }
 
-.highlights-section h4 {
-    color: var(--jci-blue);
-    margin-bottom: 15px;
-    font-size: 1.2rem;
+.cvm-creed-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 24px;
 }
 
-.highlights-section p {
-    color: #555;
+.cvm-creed-quote {
+  font-style: italic;
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  margin: 16px 0 24px;
+  color: rgba(255, 255, 255, 0.85);
 }
 
-/* Four Areas of Opportunity */
-.fao-section {
-    margin: 50px 0 30px 0;
+.cvm-read-more-btn {
+  align-self: flex-start;
+  margin-bottom: 40px;
 }
 
-.fao-section-title {
-    text-align: center;
-    margin-bottom: 30px;
+/* Dynamic Tab System for Vision & Mission */
+.cvm-interactive-tabs-container {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 30px;
 }
 
-.fao-section-title h3 {
-    color: var(--jci-blue);
-    font-size: 1.8rem;
-    margin-bottom: 8px;
+.cvm-tabs {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 10px;
+  justify-content: flex-start;
 }
 
-.fao-section-title p {
-    color: #666;
-    font-size: 1rem;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.6;
+.cvm-tab-btn {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+  background: none;
+  border: none;
+  padding: 8px 0;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
 }
 
-.fao-cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+.cvm-tab-btn:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cvm-tab-btn.active {
+  color: var(--primary-light);
+}
+
+.cvm-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -11px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-light);
+}
+
+/* Tab Panels */
+.cvm-panels {
+  min-height: 80px;
+}
+
+.cvm-panel {
+  display: none;
+  animation: cvm-fadein 0.4s ease both;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.cvm-panel.active {
+  display: block;
+}
+
+@keyframes cvm-fadein {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+  transition: var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.vm-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gradient-blue);
+}
+
+.vm-card:hover {
+  background: rgba(0,119,182,0.18);
+  border-color: rgba(0,180,216,0.35);
+  transform: translateY(-4px);
+}
+
+.vm-card-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: var(--gradient-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(0,119,182,0.35);
+}
+
+.vm-card h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+
+.vm-card p {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.68);
+  line-height: 1.8;
+}
+
+/* ============================================================
+   WHY JOIN JCI
+   ============================================================ */
+.why-join-section { padding: var(--space-3xl) 0; }
+
+.why-join-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: var(--space-2xl);
+}
+
+.why-card {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 32px 28px;
+  text-align: center;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.why-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-blue);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.why-card:hover {
+  border-color: transparent;
+  box-shadow: var(--shadow-blue);
+  transform: translateY(-6px);
+}
+
+.why-card:hover::after { opacity: 1; }
+
+.why-card:hover .why-icon,
+.why-card:hover h3,
+.why-card:hover p {
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.why-card:hover .why-icon-wrap {
+  background: rgba(255,255,255,0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.why-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--surface-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  transition: var(--transition-base);
+  position: relative;
+  z-index: 1;
+}
+
+.why-icon {
+  font-size: 1.5rem;
+  color: var(--primary);
+  transition: var(--transition-base);
+  position: relative;
+  z-index: 1;
+}
+
+.why-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+  transition: var(--transition-base);
+  position: relative;
+  z-index: 1;
+}
+
+.why-card p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  transition: var(--transition-base);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   FOUR AREAS OF OPPORTUNITY
+   ============================================================ */
+.fao-section { padding: var(--space-3xl) 0; }
+
+.fao-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: var(--space-2xl);
 }
 
 .fao-card {
-    background: white;
-    padding: 25px 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 32px 20px;
+  text-align: center;
+  border: 1.5px solid var(--border);
+  transition: var(--transition-base);
+  cursor: default;
 }
 
 .fao-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(0,119,182,0.08), var(--shadow-md);
+  transform: translateY(-6px);
 }
 
-.fao-card .icon {
-    width: 60px;
-    height: 60px;
-    background: #eef9ff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 15px;
+.fao-icon-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: var(--gradient-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 8px 24px rgba(0,119,182,0.3);
+  transition: var(--transition-base);
 }
 
-.fao-card .icon i {
-    font-size: 1.5rem;
-    color: var(--jci-blue);
+.fao-card:hover .fao-icon-wrap {
+  transform: scale(1.1) rotate(-3deg);
+}
+
+.fao-icon-wrap i {
+  font-size: 1.6rem;
+  color: #fff;
 }
 
 .fao-card h4 {
-    color: var(--jci-blue);
-    font-size: 1rem;
-    margin-bottom: 8px;
-    font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 10px;
 }
 
 .fao-card p {
-    color: #666;
-    font-size: 0.85rem;
-    line-height: 1.5;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
 }
 
-/* Join JCI Section */
-#join-jci {
-    margin: 50px 0;
-    padding: 0 20px;
+/* ============================================================
+   IMPACT HIGHLIGHTS TICKER
+   ============================================================ */
+.highlights-bar {
+  background: var(--primary);
+  padding: 12px 0;
+  overflow: hidden;
 }
 
-.join-jci-container {
-    display: flex;
-    max-width: 1100px;
-    margin: 0 auto;
-    background: #ffffff;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+.highlights-ticker {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  white-space: nowrap;
+  animation: ticker 20s linear infinite;
 }
 
-/* Left Column: Image */
-.join-jci-image {
-    flex: 1;
-    position: relative;
-    min-height: 450px;
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
-.join-jci-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
+.highlights-ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.9);
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
-.image-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 40px 30px;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
-    color: white;
+.highlights-ticker-item i {
+  color: var(--gold);
+  font-size: 0.75rem;
 }
 
-.image-overlay h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    font-weight: 600;
+.highlights-sep {
+  color: rgba(255,255,255,0.3);
+  font-size: 1.2rem;
 }
 
-.image-overlay p {
-    font-size: 0.95rem;
-    line-height: 1.5;
+/* ============================================================
+   JOIN JCI FORM
+   ============================================================ */
+.join-section { padding: var(--space-3xl) 0; }
+
+.join-container {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
 }
 
-/* Right Column: Form */
-.join-jci-form {
-    flex: 1.2;
-    padding: 50px;
+.join-image-panel {
+  position: relative;
+  min-height: 520px;
+  background: var(--dark);
 }
 
-.join-jci-form h2 {
-    color: var(--jci-blue);
-    margin-bottom: 10px;
-    font-size: 1.8rem;
+.join-image-panel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.join-jci-form > p {
-    color: #666;
-    margin-bottom: 0;
-    font-size: 0.95rem;
+.join-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(13,27,42,0.95) 0%,
+    rgba(13,27,42,0.4) 60%,
+    transparent 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 36px 32px;
 }
 
-.join-jci-form form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 25px;
+.join-image-overlay h3 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 10px;
 }
 
-.form-row {
-    display: flex;
-    gap: 15px;
+.join-image-overlay p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.6;
 }
 
-.join-jci-form input[type="text"],
-.join-jci-form input[type="email"],
-.join-jci-form input[type="tel"],
-.join-jci-form textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 0.95rem;
-    transition: border-color 0.3s;
+.join-form-panel {
+  background: var(--surface);
+  padding: 48px 44px;
 }
 
-.join-jci-form input:focus,
-.join-jci-form textarea:focus {
-    outline: none;
-    border-color: var(--jci-blue);
+.join-form-panel h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
 }
 
-.join-jci-form textarea {
-    min-height: 80px;
-    resize: vertical;
+.join-form-panel > p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 28px;
 }
 
-.join-jci-form button {
-    padding: 15px;
-    background-color: var(--jci-blue);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    font-size: 1rem;
+.join-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.join-jci-form button:hover {
-    background-color: #0077aa;
+.join-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 900px) {
-    .join-jci-container {
-        flex-direction: column;
-    }
-    
-    .join-jci-image {
-        min-height: 250px;
-    }
-    
-    .join-jci-image img {
-        position: relative;
-        height: 250px;
-    }
-    
-    .form-row {
-        flex-direction: column;
-    }
+.join-form .form-input {
+  background: var(--surface-alt);
+  border: 1.5px solid transparent;
 }
 
+.join-form .form-input:focus {
+  background: #fff;
+  border-color: var(--primary);
+}
+
+.join-form textarea.form-input {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.join-submit {
+  padding: 15px;
+  background: var(--gradient-blue);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: var(--shadow-blue);
+}
+
+.join-submit:hover {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(0,119,182,0.4);
+}
+
+/* ============================================================
+   RESPONSIVE —    ============================================================ */
+@media (max-width: 1024px) {
+  .fao-grid { grid-template-columns: repeat(2, 1fr); }
+  .cvm-layout-grid { grid-template-columns: 1fr; gap: 40px; }
+  .cvm-president-photo-wrap { max-width: 420px; margin: 0 auto; }
+}
+
+@media (max-width: 768px) {
+  .hero-slider {
+    height: calc(100vh - var(--navbar-h));
+    max-height: none;
+  }
+
+  .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2) { border-right: none; }
+  .stat-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.08); }
+
+  .why-join-grid { grid-template-columns: 1fr 1fr; }
+  .fao-grid { grid-template-columns: 1fr 1fr; }
+
+  .join-container { grid-template-columns: 1fr; }
+  .join-image-panel { min-height: 260px; }
+  .join-form-panel { padding: 32px 24px; }
+  .join-form .form-row { grid-template-columns: 1fr; }
+
+  .slider-arrow { display: none; }
+  
+  .cvm-tabs { gap: 16px; margin-bottom: 20px; }
+  .cvm-tab-btn { font-size: 0.95rem; }
+  .cvm-president-name { font-size: 2.2rem; }
+}
+
+@media (max-width: 480px) {
+  .why-join-grid { grid-template-columns: 1fr; }
+  .fao-grid { grid-template-columns: 1fr; }
+  .stats-bar-inner { grid-template-columns: 1fr 1fr; }
+  .slide-content h1 { font-size: 1.8rem; }
+}
