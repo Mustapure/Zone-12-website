@@ -520,9 +520,14 @@
                 cvmTabBtns.forEach(b => b.classList.remove('active'));
                 cvmPanels.forEach(p => p.classList.remove('active'));
                 btn.classList.add('active');
-                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+                const targetPanel = document.getElementById('tab-' + btn.dataset.tab);
+                if (targetPanel) targetPanel.classList.add('active');
             });
         });
+
+        // --- Join Image Overlay (prevents overlay class/style collisions) ---
+        // No-op: overlay visuals are controlled via CSS (join-image-overlay / slide-overlay).
+        // Kept to ensure script ends cleanly even if elements are missing.
     </script>
 </body>
 

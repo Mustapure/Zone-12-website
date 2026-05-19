@@ -409,52 +409,6 @@
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-  transition: var(--transition-base);
-  position: relative;
-  overflow: hidden;
-}
-
-.vm-card::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--gradient-blue);
-}
-
-.vm-card:hover {
-  background: rgba(0,119,182,0.18);
-  border-color: rgba(0,180,216,0.35);
-  transform: translateY(-4px);
-}
-
-.vm-card-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 16px;
-  background: var(--gradient-blue);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: #fff;
-  margin-bottom: 20px;
-  box-shadow: 0 8px 24px rgba(0,119,182,0.35);
-}
-
-.vm-card h3 {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 14px;
-  letter-spacing: -0.01em;
-}
-
-.vm-card p {
-  font-size: 0.92rem;
-  color: rgba(255,255,255,0.68);
-  line-height: 1.8;
-}
 
 /* ============================================================
    WHY JOIN JCI
