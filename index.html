@@ -315,7 +315,7 @@
                     <p>Developing Young Leaders Through Personal Growth</p>
                 </div>
                 <div class="fao-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="fao-icon-wrap"><i class="fa-solid fa-hands-holding-heart"></i></div>
+                    <div class="fao-icon-wrap"><i class="fa-solid fa-hand-holding-heart"></i></div>
                     <h4>Community Impact</h4>
                     <p>Building Better Communities Through Local Action</p>
                 </div>
@@ -509,7 +509,13 @@
         // --- Back to Top ---
         const btt = document.getElementById('backToTop');
         window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 400));
-        btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        btt.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Ensure button hides after smooth scroll completes
+            setTimeout(() => {
+                if (window.scrollY <= 400) btt.classList.remove('visible');
+            }, 600);
+        });
 
         // --- CVM Tabs ---
         const cvmTabBtns = document.querySelectorAll('.cvm-tab-btn');
