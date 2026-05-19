@@ -60,7 +60,7 @@
   --transition-slow: all 0.5s ease;
 
   /* Navbar */
-  --navbar-h: 72px;
+  --navbar-h: 110px;
 }
 
 /* --- Reset & Base --- */
@@ -144,7 +144,7 @@ button {
 }
 
 .navbar-brand img {
-  height: 46px;
+  height: 90px;
   width: auto;
   object-fit: contain;
 }
@@ -608,7 +608,7 @@ button {
 
 /* Footer Brand Column */
 .footer-brand .footer-logo {
-  height: 46px;
+  height: 100px;
   width: auto;
   margin-bottom: 16px;
   filter: brightness(1.1);
@@ -913,6 +913,6 @@ button {
   }
 
   .navbar-brand img {
-    height: 38px;
+    height: 70px;
   }
 }
