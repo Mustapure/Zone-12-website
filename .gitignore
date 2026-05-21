@@ -1,0 +1,5 @@
+﻿# Keep server-side and database files private
+database.sql
+config/database.php
+*.sql
+.htaccess
