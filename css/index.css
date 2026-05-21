@@ -576,8 +576,7 @@
 }
 
 .fao-card:hover {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(0,119,182,0.08), var(--shadow-md);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-6px);
 }
 
