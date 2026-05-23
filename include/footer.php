@@ -69,7 +69,7 @@
     </div>
 
     <div class="footer-bottom">
-        <strong>Official Linktr.ee</strong> | &copy; <?php echo date("Y"); ?> JCI India Zone 12. All Rights Reserved.
+        <strong>Aratha.in</strong> | &copy; <?php echo date("Y"); ?> JCI India Zone 12. All Rights Reserved.
     </div>
 
 </footer>

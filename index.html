@@ -362,7 +362,7 @@
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-brand">
-                <img src="JCI Zone.png" alt="JCI Zone 12" class="footer-logo">
+                <img src="img/Zonelogowhite.png" alt="JCI Zone 12" class="footer-logo">
                 <p>JCI India Zone 12 is a voluntary, membership-based organisation of young active citizens aged 18–40.
                     We create positive change in our communities through leadership development and action.</p>
                 <div class="footer-social">
@@ -422,7 +422,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p><strong style="color:rgba(255,255,255,0.7);">Official Linktr.ee</strong> &nbsp;|&nbsp; &copy; <span
+            <p><strong style="color:rgba(255,255,255,0.7);">Aratha.in</strong> &nbsp;|&nbsp; &copy; <span
                     id="year"></span> JCI India Zone 12. All Rights Reserved.</p>
             <div class="footer-bottom-links">
                 <a href="#">Privacy Policy</a>
@@ -509,7 +509,13 @@
         // --- Back to Top ---
         const btt = document.getElementById('backToTop');
         window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 400));
-        btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        btt.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Ensure button hides after smooth scroll completes
+            setTimeout(() => {
+                if (window.scrollY <= 400) btt.classList.remove('visible');
+            }, 600);
+        });
 
         // --- CVM Tabs ---
         const cvmTabBtns = document.querySelectorAll('.cvm-tab-btn');
@@ -520,9 +526,14 @@
                 cvmTabBtns.forEach(b => b.classList.remove('active'));
                 cvmPanels.forEach(p => p.classList.remove('active'));
                 btn.classList.add('active');
-                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+                const targetPanel = document.getElementById('tab-' + btn.dataset.tab);
+                if (targetPanel) targetPanel.classList.add('active');
             });
         });
+
+        // --- Join Image Overlay (prevents overlay class/style collisions) ---
+        // No-op: overlay visuals are controlled via CSS (join-image-overlay / slide-overlay).
+        // Kept to ensure script ends cleanly even if elements are missing.
     </script>
 </body>
 

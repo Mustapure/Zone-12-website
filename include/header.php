@@ -22,9 +22,7 @@
 
     <!-- Top Navigation Bar -->
     <nav class="navbar">
-        <a href="index.php" class="navbar-brand">
-            <img src="JCI Zone.png" alt="JCI Logo">
-        </a>
+        <a href="index.php" class="navbar-brand"><img src="img/ZonelogoColor.png" alt="JCI India Zone 12 Logo"></a>
         <div class="navbar-menu">
 <?php 
                 $userName = getCurrentUserName() ?: getCurrentUserEmail();
