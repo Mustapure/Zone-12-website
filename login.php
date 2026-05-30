@@ -66,7 +66,7 @@ redirectIfLoggedIn();
                 
                 <div class="relative z-10 h-full flex flex-col justify-between">
                     <div>
-                        <img src="JCI Zone.png" alt="JCI Zone 12" class="h-12 mb-4">
+                        <img src="img/ZonelogoColor.png" alt="JCI Zone 12" class="h-12 mb-4">
                         <h1 class="text-2xl font-bold text-white mb-2">JCI Zone 12</h1>
                         <p class="text-white/90 text-sm">Join a global network of young active citizens building a better world.</p>
                     </div>
