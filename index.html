@@ -34,6 +34,7 @@
             <a href="./" class="nav-item active"><i class="fa-solid fa-house"></i> Home</a>
             <a href="directory" class="nav-item"><i class="fa-solid fa-address-book"></i> DIR</a>
             <a href="leaders" class="nav-item"><i class="fa-solid fa-users"></i> Leaders</a>
+            <a href="wall-of-fame" class="nav-item"><i class="fa-solid fa-trophy"></i> Wall of Fame</a>
             <a href="events" class="nav-item"><i class="fa-solid fa-calendar-days"></i> Events</a>
             <a href="partner" class="nav-item"><i class="fa-solid fa-handshake"></i> Partner</a>
             <a href="contact" class="nav-item nav-cta"><i class="fa-solid fa-paper-plane"></i> Join Us</a>
@@ -48,6 +49,7 @@
         <a href="./" class="nav-item active"><i class="fa-solid fa-house"></i> Home</a>
         <a href="directory" class="nav-item"><i class="fa-solid fa-address-book"></i> DIR</a>
         <a href="leaders" class="nav-item"><i class="fa-solid fa-users"></i> Leaders</a>
+        <a href="wall-of-fame" class="nav-item"><i class="fa-solid fa-trophy"></i> Wall of Fame</a>
         <a href="events" class="nav-item"><i class="fa-solid fa-calendar-days"></i> Events</a>
         <a href="partner" class="nav-item"><i class="fa-solid fa-handshake"></i> Partner</a>
         <a href="contact" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact Us</a>
@@ -236,6 +238,94 @@
         </div>
     </section>
 
+    <!-- ====== WALL OF FAME / LEGACY HIGHLIGHT ====== -->
+    <section class="legacy-highlight-section section section-alt">
+        <style>
+            .legacy-layout-grid {
+                display: grid;
+                grid-template-columns: 1.2fr 1fr;
+                gap: 48px;
+                align-items: center;
+            }
+            .legacy-preview-card:hover {
+                transform: scale(1.05) translateY(-5px) !important;
+                z-index: 10 !important;
+                box-shadow: var(--shadow-xl) !important;
+            }
+            @media (max-width: 768px) {
+                .legacy-layout-grid {
+                    grid-template-columns: 1fr;
+                    gap: 36px;
+                }
+                .legacy-visual-wrap {
+                    height: 320px !important;
+                    max-width: 320px;
+                    margin: 0 auto;
+                }
+                .legacy-preview-card {
+                    width: 220px !important;
+                }
+            }
+        </style>
+        <div class="container">
+            <div class="legacy-layout-grid">
+                <!-- Left: Content -->
+                <div data-aos="fade-right">
+                    <div class="section-label">Honoring Legacy</div>
+                    <h2 class="section-title">Our Wall of Fame</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 24px; line-height: 1.8; font-size: 0.98rem;">
+                        JCI India Zone 12 is built upon a foundation of extraordinary leaders, outstanding chapters, and dedicated young active citizens. Explore our rich history of visionary Zone Presidents and prestigious award winners who have written our legacy through impactful community service.
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <i class="fa-solid fa-crown" style="color: var(--gold); font-size: 1.2rem; width: 24px; text-align: center;"></i>
+                            <span style="font-weight: 600; color: var(--dark);">Visionary Past Zone Presidents</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <i class="fa-solid fa-building-flag" style="color: var(--primary); font-size: 1.2rem; width: 24px; text-align: center;"></i>
+                            <span style="font-weight: 600; color: var(--dark);">Outstanding Chapters &amp; 100% Efficiency</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <i class="fa-solid fa-medal" style="color: var(--gold); font-size: 1.2rem; width: 24px; text-align: center;"></i>
+                            <span style="font-weight: 600; color: var(--dark);">Individual Honors &amp; Senate Awards</span>
+                        </div>
+                    </div>
+                    <a href="wall-of-fame" class="btn btn-primary btn-lg"><i class="fa-solid fa-trophy"></i> Explore Wall of Fame</a>
+                </div>
+                <!-- Right: Visual Cards Stack -->
+                <div class="legacy-visual-wrap" data-aos="fade-left" style="position: relative; height: 380px; width: 100%;">
+                    <!-- A beautiful stack of overlapping award preview cards -->
+                    <div class="legacy-preview-card" style="background: white; border-radius: 16px; padding: 20px; box-shadow: var(--shadow-lg); border: 2px solid var(--gold); position: absolute; top: 10px; left: 10px; width: 260px; z-index: 3; transition: transform 0.3s, box-shadow 0.3s;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <span style="background: var(--gold); color: var(--dark); font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 99px;">PRESIDENT</span>
+                            <span style="color: var(--gold); font-weight: 800; font-size: 0.8rem;">2025</span>
+                        </div>
+                        <h4 style="font-weight: 800; margin-bottom: 4px; color: var(--dark);">JFS Chaturvedi Vutkuru</h4>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">JCI India Zone 12</p>
+                    </div>
+                    
+                    <div class="legacy-preview-card" style="background: white; border-radius: 16px; padding: 20px; box-shadow: var(--shadow-md); border: 1px solid var(--border); position: absolute; top: 110px; left: 120px; width: 260px; z-index: 2; transform: rotate(3deg); transition: transform 0.3s, box-shadow 0.3s;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <span style="background: rgba(0, 168, 232, 0.1); color: var(--primary); font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 99px;">AWARD</span>
+                            <span style="color: var(--primary); font-weight: 800; font-size: 0.8rem;">2025</span>
+                        </div>
+                        <h4 style="font-weight: 800; margin-bottom: 4px; color: var(--dark);">JCI Hyderabad Synergy</h4>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Best Local Chapter</p>
+                    </div>
+
+                    <div class="legacy-preview-card" style="background: var(--dark); color: white; border-radius: 16px; padding: 20px; box-shadow: var(--shadow-lg); border: 1.5px solid var(--gold); position: absolute; top: 210px; left: 40px; width: 260px; z-index: 1; transform: rotate(-3deg); transition: transform 0.3s, box-shadow 0.3s;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <span style="background: rgba(244, 197, 66, 0.15); color: var(--gold); font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 99px; border: 1px solid var(--gold);">SENATE</span>
+                            <span style="color: var(--gold); font-weight: 800; font-size: 0.8rem;">2026</span>
+                        </div>
+                        <h4 style="font-weight: 800; margin-bottom: 4px; color: white;">JFP Goutam Kumar Jain</h4>
+                        <p style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.6);">Senate Lifetime Honor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ====== WHY JOIN JCI ====== -->
     <section class="why-join-section section">
         <div class="container">
@@ -380,7 +470,7 @@
                 <ul>
                     <li><a href="./">Home</a></li>
                     <li><a href="leaders">About</a></li>
-                    <li><a href="partner">What We Do</a></li>
+                    <li><a href="wall-of-fame">Wall of Fame</a></li>
                     <li><a href="partner">Partners</a></li>
                     <li><a href="events">News and Events</a></li>
                     <li><a href="directory">Media</a></li>

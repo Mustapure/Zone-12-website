@@ -1,0 +1,406 @@
+/* ============================================================
+   JCI Zone 12 — Wall of Fame Page (wall-of-fame.css)
+   Aesthetic: Premium, Golden Accents, Glassmorphic & Alive
+   ============================================================ */
+
+/* --- Category Filter Tabs --- */
+.fame-filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto 48px;
+  flex-wrap: wrap;
+  max-width: 800px;
+}
+
+.fame-tab-btn {
+  padding: 10px 22px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  background: var(--surface-alt);
+  border: 1.5px solid var(--border);
+  transition: var(--transition-base);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fame-tab-btn i {
+  font-size: 0.95rem;
+}
+
+.fame-tab-btn:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: rgba(0, 168, 232, 0.05);
+  transform: translateY(-2px);
+}
+
+.fame-tab-btn.active {
+  color: #fff;
+  background: var(--primary);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-blue);
+}
+
+/* Gold active tab if they click on Presidents or Hall of Fame */
+.fame-tab-btn.active.gold-tab {
+  background: linear-gradient(135deg, #E6AF2E 0%, #F4C542 100%);
+  border-color: #E6AF2E;
+  color: var(--dark);
+  box-shadow: 0 8px 24px rgba(244, 197, 66, 0.25);
+}
+
+/* --- Section Labels --- */
+.fame-section-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 56px 0 28px;
+}
+
+.fame-section-title:first-of-type {
+  margin-top: 0;
+}
+
+.fame-section-title h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fame-section-title h2 i {
+  color: var(--gold);
+}
+
+.fame-section-title .fame-line {
+  flex: 1;
+  height: 1.5px;
+  background: var(--border);
+  border-radius: 2px;
+}
+
+/* --- Chronological Presidents Grid --- */
+.presidents-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+/* Presidential Card - Gold Accented Laurels */
+.president-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--border);
+  transition: var(--transition-base);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.president-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #E6AF2E, #F4C542, #E6AF2E);
+}
+
+.president-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow: 0 16px 40px rgba(244, 197, 66, 0.15);
+}
+
+.president-header {
+  position: relative;
+  background: var(--surface-alt);
+  padding: 24px 20px 10px;
+  text-align: center;
+}
+
+.president-year-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: linear-gradient(135deg, #0D1B2A 0%, #1A2E42 100%);
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--gold);
+  box-shadow: var(--shadow-sm);
+}
+
+.president-img-wrap {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  overflow: hidden;
+  border: 3.5px solid var(--gold);
+  box-shadow: var(--shadow-md);
+  background: #fff;
+}
+
+.president-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* Presidential Laurels Overlay Decor */
+.president-laurel {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  color: var(--gold);
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.president-info {
+  padding: 16px 24px 24px;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.president-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.president-title {
+  font-size: 0.85rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.president-divider {
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+  margin: 0 auto 12px;
+}
+
+.president-quote {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: auto;
+}
+
+.president-chapter {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 14px;
+}
+
+/* --- Awards Grid Layout --- */
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.award-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid var(--border);
+  transition: var(--transition-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.award-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-lg);
+}
+
+.award-ribbon {
+  background: var(--gradient-blue);
+  color: #fff;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.award-ribbon.senate-ribbon {
+  background: linear-gradient(135deg, #0D1B2A 0%, #1A2E42 100%);
+  color: var(--gold);
+  border-bottom: 1.5px solid var(--gold);
+}
+
+.award-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.award-year {
+  font-size: 0.8rem;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+}
+
+.award-ribbon.senate-ribbon .award-year {
+  background: rgba(244, 197, 66, 0.15);
+  border: 1px solid var(--gold);
+}
+
+.award-body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.award-recipient-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.award-avatar-initials {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--surface-alt);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  border: 2px solid var(--primary-light);
+  flex-shrink: 0;
+}
+
+.award-ribbon.senate-ribbon + .award-body .award-avatar-initials {
+  background: rgba(244, 197, 66, 0.05);
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.award-recipient-info {
+  flex: 1;
+}
+
+.award-recipient-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.award-recipient-role {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.award-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: auto;
+}
+
+.award-card-footer {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.award-card-footer i {
+  font-size: 0.85rem;
+  color: var(--gold);
+}
+
+/* Empty State Styling for filters */
+.fame-empty-state {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--surface-alt);
+  border-radius: var(--radius-lg);
+  border: 2.5px dashed var(--border);
+  max-width: 500px;
+  margin: 30px auto;
+}
+
+.fame-empty-icon {
+  font-size: 3rem;
+  color: var(--text-light);
+  margin-bottom: 16px;
+}
+
+.fame-empty-state h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.fame-empty-state p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .presidents-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .awards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .fame-filters {
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .fame-tab-btn {
+    padding: 8px 18px;
+    font-size: 0.82rem;
+  }
+}
