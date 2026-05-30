@@ -3,3 +3,10 @@ database.sql
 config/database.php
 *.sql
 .htaccess
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
