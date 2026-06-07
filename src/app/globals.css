@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  --background: #140f2d;
+  --foreground: #ffffff;
+}
+
+@theme {
+  --color-background: #140f2d;
+  --color-foreground: #ffffff;
+  
+  --color-sky-500: #0b97cc;
+  --color-sky-600: #097fae;
+  --color-sky-400: #65bfbf;
+  --color-sky-300: #8fd4d4;
+  --color-sky-200: #bde7e7;
+  
+  --color-slate-950: #140f2d;
+  --color-slate-900: #1a1538;
+  --color-slate-800: #26204c;
+}
+
+body {
+  background-color: #140f2d;
+  color: #ffffff;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* 
+  Override hardcoded arbitrary color classes to follow the new color palette.
+  This allows elements with inline styling or arbitrary classes like bg-[#070d1e]
+  to seamlessly match the requested colors (#140f2d, #65bfbf, #0b97cc).
+*/
+[class*="bg-[#070d1e]"] {
+  background-color: #140f2d !important;
+}
+[class*="bg-[#070d1e]/85"] {
+  background-color: rgba(20, 15, 45, 0.85) !important;
+}
+[class*="bg-[#070d1e]/60"] {
+  background-color: rgba(20, 15, 45, 0.60) !important;
+}
+[class*="bg-[#0b1329]"] {
+  background-color: #140f2d !important;
+}
+[class*="bg-[#0b1329]/20"] {
+  background-color: rgba(20, 15, 45, 0.20) !important;
+}
+[class*="bg-[#0c142c]"] {
+  background-color: #140f2d !important;
+}
+[class*="bg-[#0c142c]/90"] {
+  background-color: rgba(20, 15, 45, 0.90) !important;
+}
+[class*="bg-[#0e172e]"] {
+  background-color: #1a143b !important;
+}
+[class*="bg-[#0e172e]/50"] {
+  background-color: rgba(26, 20, 59, 0.50) !important;
+}
+[class*="bg-[#0e172e]/90"] {
+  background-color: rgba(26, 20, 59, 0.90) !important;
+}
+[class*="bg-[#101c38]"] {
+  background-color: rgba(101, 191, 191, 0.08) !important;
+}
+[class*="border-slate-800"] {
+  border-color: #2b2554 !important;
+}
+[class*="border-slate-850"] {
+  border-color: #352e64 !important;
+}
+[class*="text-slate-400"] {
+  color: #a39ebc !important;
+}
+[class*="text-slate-300"] {
+  color: #d8d6e3 !important;
+}
