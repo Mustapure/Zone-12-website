@@ -10,20 +10,30 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { targetUserId, newRole, newStatus, approveVerification } = body;
+    const { targetUserId, newRole, newStatus, approveVerification, denyVerification } = body;
 
     if (!targetUserId) {
       return NextResponse.json({ error: 'Target user ID is required.' }, { status: 400 });
     }
 
     if (approveVerification) {
-      // Approve verification: promote to verified_user and set requested=false
+      // Approve verification: promote to verified_user and clear the request flag
       await sql`
         UPDATE users 
         SET role = 'verified_user', verification_requested = FALSE, updated_at = CURRENT_TIMESTAMP
         WHERE id = ${targetUserId}
       `;
-      return NextResponse.json({ message: 'User verification approved!' }, { status: 200 });
+      return NextResponse.json({ message: 'Badge verification approved!' }, { status: 200 });
+    }
+
+    if (denyVerification) {
+      // Deny verification: just clear the request flag, keep the role unchanged
+      await sql`
+        UPDATE users 
+        SET verification_requested = FALSE, updated_at = CURRENT_TIMESTAMP
+        WHERE id = ${targetUserId}
+      `;
+      return NextResponse.json({ message: 'Verification request denied and cleared.' }, { status: 200 });
     }
 
     if (newRole) {

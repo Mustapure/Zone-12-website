@@ -82,7 +82,7 @@ export default function AdminDashboardClient({
   metrics 
 }: AdminDashboardClientProps) {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<'users' | 'businesses' | 'inbox' | 'events'>('users');
+  const [activeTab, setActiveTab] = useState<'users' | 'businesses' | 'inbox' | 'events' | 'verifications'>('users');
   const [isUpdating, setIsUpdating] = useState(false);
   const [alertMsg, setAlertMsg] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
@@ -276,10 +276,33 @@ export default function AdminDashboardClient({
         body: JSON.stringify({ targetUserId: userId, approveVerification: true })
       });
       if (res.ok) {
-        showAlert('success', 'User verification approved!');
+        showAlert('success', 'Badge verification approved! User is now verified.');
         router.refresh();
       } else {
         showAlert('error', 'Failed to approve verification.');
+      }
+    } catch (e) {
+      showAlert('error', 'Network communication error.');
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  // 1b. Deny / dismiss verification request
+  const handleDenyVerification = async (userId: number) => {
+    if (!confirm('Deny this badge verification request? The member will need to re-submit.')) return;
+    setIsUpdating(true);
+    try {
+      const res = await fetch('/api/admin/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetUserId: userId, denyVerification: true })
+      });
+      if (res.ok) {
+        showAlert('success', 'Verification request denied and cleared.');
+        router.refresh();
+      } else {
+        showAlert('error', 'Failed to deny verification.');
       }
     } catch (e) {
       showAlert('error', 'Network communication error.');
@@ -513,14 +536,17 @@ export default function AdminDashboardClient({
             <h4 className="text-2xl font-black text-white mt-3">{metrics.totalBusinesses}</h4>
           </div>
 
-          <div className="p-5 rounded-2xl bg-[#0f172e]/60 border border-slate-800/80">
+          <button
+            onClick={() => setActiveTab('verifications')}
+            className="p-5 rounded-2xl bg-[#0f172e]/60 border border-yellow-500/30 hover:border-yellow-500/60 transition text-left group"
+          >
             <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-1">
               <Clock size={12} className="text-yellow-400" />
               <span>Pending Reviews</span>
             </span>
             <h4 className="text-2xl font-black text-yellow-400 mt-3">{metrics.pendingVerifications}</h4>
-            <p className="text-[9px] text-slate-500 mt-1">Badge Verifications</p>
-          </div>
+            <p className="text-[9px] text-yellow-500/70 group-hover:text-yellow-400 mt-1 transition">Badge Verifications → Click to review</p>
+          </button>
 
           <div className="p-5 rounded-2xl bg-[#0f172e]/60 border border-slate-800/80 col-span-2 lg:col-span-1">
             <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-1">
@@ -532,10 +558,10 @@ export default function AdminDashboardClient({
         </div>
 
         {/* Tab Selection */}
-        <div className="flex border-b border-slate-800/80 gap-6 text-xs sm:text-sm font-bold uppercase tracking-wider">
+        <div className="flex border-b border-slate-800/80 gap-6 text-xs sm:text-sm font-bold uppercase tracking-wider overflow-x-auto">
           <button
             onClick={() => setActiveTab('users')}
-            className={`pb-3 relative transition ${
+            className={`pb-3 relative transition shrink-0 ${
               activeTab === 'users' ? 'text-white' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -547,10 +573,30 @@ export default function AdminDashboardClient({
               <span className="absolute bottom-0 inset-x-0 h-[2px] bg-rose-500 rounded-full" />
             )}
           </button>
+
+          <button
+            onClick={() => setActiveTab('verifications')}
+            className={`pb-3 relative transition shrink-0 ${
+              activeTab === 'verifications' ? 'text-yellow-400' : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck size={14} />
+              <span>Badge Verifications</span>
+              {metrics.pendingVerifications > 0 && (
+                <span className="ml-1 bg-yellow-500 text-slate-950 text-[9px] font-black px-1.5 py-0.5 rounded-full animate-pulse">
+                  {metrics.pendingVerifications}
+                </span>
+              )}
+            </span>
+            {activeTab === 'verifications' && (
+              <span className="absolute bottom-0 inset-x-0 h-[2px] bg-yellow-500 rounded-full" />
+            )}
+          </button>
           
           <button
             onClick={() => setActiveTab('businesses')}
-            className={`pb-3 relative transition ${
+            className={`pb-3 relative transition shrink-0 ${
               activeTab === 'businesses' ? 'text-white' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -565,7 +611,7 @@ export default function AdminDashboardClient({
 
           <button
             onClick={() => setActiveTab('inbox')}
-            className={`pb-3 relative transition ${
+            className={`pb-3 relative transition shrink-0 ${
               activeTab === 'inbox' ? 'text-white' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -580,7 +626,7 @@ export default function AdminDashboardClient({
 
           <button
             onClick={() => setActiveTab('events')}
-            className={`pb-3 relative transition ${
+            className={`pb-3 relative transition shrink-0 ${
               activeTab === 'events' ? 'text-white' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -594,9 +640,110 @@ export default function AdminDashboardClient({
           </button>
         </div>
 
-        {/* Tab contents */}
-        {activeTab === 'users' && (
-          <div className="bg-[#0f172e]/60 border border-slate-800/80 rounded-3xl overflow-hidden shadow-xl">
+        {/* Tab contents — all panels always in DOM; CSS hidden used to prevent layout shift */}
+
+        {/* Badge Verifications Tab */}
+        <div className={activeTab === 'verifications' ? 'space-y-4' : 'hidden'}>
+            <div className="bg-[#0f172e]/60 border border-slate-800/80 rounded-3xl overflow-hidden shadow-xl">
+              <div className="p-5 border-b border-slate-800/60 bg-slate-950/20 flex justify-between items-center">
+                <div>
+                  <h3 className="text-xs font-black text-white uppercase tracking-wider flex items-center gap-2">
+                    <ShieldCheck size={14} className="text-yellow-400" />
+                    Pending Badge Verification Requests
+                  </h3>
+                  <p className="text-[10px] text-slate-500 mt-1">Members who have requested their JCI membership badge to be verified</p>
+                </div>
+                <RefreshCw
+                  size={14}
+                  className="text-slate-400 hover:text-white cursor-pointer transition"
+                  onClick={() => router.refresh()}
+                />
+              </div>
+
+              {users.filter((u) => u.verification_requested).length === 0 ? (
+                <div className="p-16 text-center space-y-3">
+                  <ShieldCheck size={36} className="mx-auto text-emerald-500/40" />
+                  <p className="text-sm font-black text-slate-400">All Clear!</p>
+                  <p className="text-xs text-slate-500">No pending badge verification requests at this time.</p>
+                </div>
+              ) : (
+                <div className="divide-y divide-slate-800/80">
+                  {users.filter((u) => u.verification_requested).map((u) => (
+                    <div key={u.id} className="p-5 sm:p-6 hover:bg-slate-900/10 transition">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        {/* Left: Member Info */}
+                        <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center shrink-0">
+                            <span className="text-yellow-400 font-black text-sm">
+                              {u.first_name.charAt(0)}{u.last_name.charAt(0)}
+                            </span>
+                          </div>
+                          <div className="space-y-1">
+                            <div className="flex items-center gap-2">
+                              <h4 className="text-sm font-black text-white">{u.first_name} {u.last_name}</h4>
+                              <span className="text-[8px] font-black bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 px-1.5 py-0.5 rounded uppercase animate-pulse">
+                                Pending Review 🛡️
+                              </span>
+                            </div>
+                            <div className="flex flex-wrap gap-3 text-[11px] text-slate-400">
+                              <span className="flex items-center gap-1">
+                                <Mail size={10} className="text-rose-400" />
+                                {u.email}
+                              </span>
+                              {u.phone && (
+                                <span className="flex items-center gap-1">
+                                  <Phone size={10} className="text-rose-400" />
+                                  {u.phone}
+                                </span>
+                              )}
+                              {u.chapter_name && (
+                                <span className="flex items-center gap-1">
+                                  <MapPin size={10} className="text-rose-400" />
+                                  {u.chapter_name}
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex items-center gap-2 text-[10px]">
+                              <span className="text-slate-500">Current Role:</span>
+                              <span className={`font-black uppercase px-2 py-0.5 rounded-full text-[9px] ${
+                                u.role === 'verified_user'
+                                  ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                                  : u.role === 'admin'
+                                  ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
+                                  : 'bg-slate-800 text-slate-400 border border-slate-700'
+                              }`}>{u.role}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Right: Actions */}
+                        <div className="flex items-center gap-2 shrink-0">
+                          <button
+                            onClick={() => handleApproveVerification(u.id)}
+                            disabled={isUpdating}
+                            className="flex items-center gap-1.5 bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50 text-white font-black px-4 py-2 rounded-xl text-[11px] uppercase tracking-wider transition shadow-lg shadow-emerald-500/20"
+                          >
+                            <Check size={13} />
+                            Approve Badge
+                          </button>
+                          <button
+                            onClick={() => handleDenyVerification(u.id)}
+                            disabled={isUpdating}
+                            className="flex items-center gap-1.5 bg-rose-500/10 hover:bg-rose-500 disabled:opacity-50 text-rose-400 hover:text-white border border-rose-500/20 font-black px-4 py-2 rounded-xl text-[11px] uppercase tracking-wider transition"
+                          >
+                            <Ban size={13} />
+                            Deny
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+        </div>
+
+        <div className={activeTab === 'users' ? 'bg-[#0f172e]/60 border border-slate-800/80 rounded-3xl overflow-hidden shadow-xl' : 'hidden'}>
             <div className="p-5 border-b border-slate-800/60 bg-slate-950/20 flex justify-between items-center">
               <h3 className="text-xs font-black text-white uppercase tracking-wider">Account Roster Management</h3>
               <div className="flex items-center gap-3">
@@ -699,11 +846,9 @@ export default function AdminDashboardClient({
                 </tbody>
               </table>
             </div>
-          </div>
-        )}
+        </div>
 
-        {activeTab === 'businesses' && (
-          <div className="bg-[#0f172e]/60 border border-slate-800/80 rounded-3xl overflow-hidden shadow-xl">
+        <div className={activeTab === 'businesses' ? 'bg-[#0f172e]/60 border border-slate-800/80 rounded-3xl overflow-hidden shadow-xl' : 'hidden'}>
             <div className="p-5 border-b border-slate-800/60 bg-slate-950/20 flex justify-between items-center">
               <h3 className="text-xs font-black text-white uppercase tracking-wider">Business Directory Listings Auditor</h3>
               <RefreshCw 
@@ -780,11 +925,9 @@ export default function AdminDashboardClient({
                 </tbody>
               </table>
             </div>
-          </div>
-        )}
+        </div>
 
-        {activeTab === 'inbox' && (
-          <div className="bg-[#0f172e]/60 border border-slate-800/80 rounded-3xl overflow-hidden shadow-xl">
+        <div className={activeTab === 'inbox' ? 'bg-[#0f172e]/60 border border-slate-800/80 rounded-3xl overflow-hidden shadow-xl' : 'hidden'}>
             <div className="p-5 border-b border-slate-800/60 bg-slate-950/20 flex justify-between items-center">
               <h3 className="text-xs font-black text-white uppercase tracking-wider">Contact Form Inboxes</h3>
               <RefreshCw 
@@ -865,11 +1008,9 @@ export default function AdminDashboardClient({
                 </div>
               )}
             </div>
-          </div>
-        )}
+        </div>
 
-        {activeTab === 'events' && (
-          <div className="bg-[#0f172e]/60 border border-slate-800/80 rounded-3xl overflow-hidden shadow-xl animate-fade-in">
+        <div className={activeTab === 'events' ? 'bg-[#0f172e]/60 border border-slate-800/80 rounded-3xl overflow-hidden shadow-xl animate-fade-in' : 'hidden'}>
             <div className="p-5 border-b border-slate-800/60 bg-slate-950/20 flex justify-between items-center">
               <div className="flex items-center gap-3">
                 <h3 className="text-xs font-black text-white uppercase tracking-wider">Events &amp; Summit Planner</h3>
@@ -969,8 +1110,7 @@ export default function AdminDashboardClient({
                 </tbody>
               </table>
             </div>
-          </div>
-        )}
+        </div>
 
       </main>
 
