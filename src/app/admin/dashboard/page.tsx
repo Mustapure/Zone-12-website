@@ -50,6 +50,7 @@ export default async function AdminDashboardPage() {
   const verifiedUsers = users.filter((u: any) => u.role === 'verified_user').length;
   const totalBusinesses = businesses.length;
   const pendingBusinesses = businesses.filter((b: any) => b.status === 'pending').length;
+  const pendingVerifications = users.filter((u: any) => u.verification_requested === true).length;
   const newInboxes = submissions.filter((s: any) => s.status === 'new').length;
 
   return (
@@ -63,6 +64,7 @@ export default async function AdminDashboardPage() {
         verifiedUsers,
         totalBusinesses,
         pendingBusinesses,
+        pendingVerifications,
         newInboxes
       }}
     />
