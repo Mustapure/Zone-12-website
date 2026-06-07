@@ -24,9 +24,10 @@ interface Business {
 interface DirectoryClientProps {
   initialBusinesses: Business[];
   cities: string[];
+  isLimited?: boolean;
 }
 
-export default function DirectoryClient({ initialBusinesses, cities }: DirectoryClientProps) {
+export default function DirectoryClient({ initialBusinesses, cities, isLimited = false }: DirectoryClientProps) {
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
@@ -143,6 +144,7 @@ export default function DirectoryClient({ initialBusinesses, cities }: Directory
         <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-800/40 text-xs text-slate-400">
           <div>
             Showing <strong className="text-sky-400">{filteredBusinesses.length}</strong> active listings
+            {isLimited && <span className="ml-1 text-rose-400 font-bold">(preview only)</span>}
           </div>
           <div className="flex items-center gap-1">
             <Sparkles size={12} className="text-yellow-500" />
@@ -170,93 +172,128 @@ export default function DirectoryClient({ initialBusinesses, cities }: Directory
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredBusinesses.map((biz) => (
-            <div
-              key={biz.id}
-              className="relative p-6 rounded-3xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 hover:bg-slate-800/60 transition duration-300 flex flex-col justify-between group shadow-lg"
-            >
-              {/* Top Row Category & City */}
-              <div>
-                <div className="flex justify-between items-start gap-3">
-                  <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-sky-400/10 text-sky-400 border border-sky-400/20">
-                    {biz.category}
-                  </span>
-                  <span className="text-[10px] text-slate-400 font-bold flex items-center gap-1">
-                    <MapPin size={10} className="text-sky-400" />
-                    {biz.city}
-                  </span>
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredBusinesses.map((biz) => (
+              <div
+                key={biz.id}
+                className="relative p-6 rounded-3xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 hover:bg-slate-800/60 transition duration-300 flex flex-col justify-between group shadow-lg"
+              >
+                {/* Top Row Category & City */}
+                <div>
+                  <div className="flex justify-between items-start gap-3">
+                    <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-sky-400/10 text-sky-400 border border-sky-400/20">
+                      {biz.category}
+                    </span>
+                    <span className="text-[10px] text-slate-400 font-bold flex items-center gap-1">
+                      <MapPin size={10} className="text-sky-400" />
+                      {biz.city}
+                    </span>
+                  </div>
+
+                  {/* Name & Owner */}
+                  <div className="mt-4">
+                    <h3 className="text-lg font-extrabold text-white group-hover:text-sky-400 transition leading-snug">
+                      {biz.business_name}
+                    </h3>
+                    <p className="text-xs text-slate-400 italic mt-1.5 flex items-center gap-1">
+                      <User size={12} className="text-slate-500" />
+                      <span>Owned by: <strong className="text-slate-300 font-semibold">{biz.owner_name}</strong></span>
+                    </p>
+                  </div>
+
+                  {/* Description */}
+                  {biz.description && (
+                    <p className="text-xs text-slate-400 leading-relaxed mt-3 line-clamp-2">
+                      {biz.description}
+                    </p>
+                  )}
+
+                  {/* Address */}
+                  {biz.address && (
+                    <p className="text-[11px] text-slate-500 mt-2 flex items-start gap-1">
+                      <MapPin size={12} className="shrink-0 mt-0.5 text-slate-600" />
+                      <span className="line-clamp-1">{biz.address}</span>
+                    </p>
+                  )}
                 </div>
 
-                {/* Name & Owner */}
-                <div className="mt-4">
-                  <h3 className="text-lg font-extrabold text-white group-hover:text-sky-400 transition leading-snug">
-                    {biz.business_name}
-                  </h3>
-                  <p className="text-xs text-slate-400 italic mt-1.5 flex items-center gap-1">
-                    <User size={12} className="text-slate-500" />
-                    <span>Owned by: <strong className="text-slate-300 font-semibold">{biz.owner_name}</strong></span>
-                  </p>
+                {/* Action and contact details footer */}
+                <div className="mt-6 pt-4 border-t border-slate-800/60 space-y-3">
+                  <div className="grid grid-cols-2 gap-2 text-[11px] text-slate-400">
+                    <a
+                      href={`tel:${biz.phone}`}
+                      className="flex items-center gap-1.5 hover:text-white transition py-1"
+                    >
+                      <Phone size={12} className="text-sky-400" />
+                      <span>Call Owner</span>
+                    </a>
+                    <a
+                      href={`mailto:${biz.email}`}
+                      className="flex items-center gap-1.5 hover:text-white transition py-1 justify-end"
+                    >
+                      <Mail size={12} className="text-sky-400" />
+                      <span className="truncate max-w-[80px]">Email</span>
+                    </a>
+                  </div>
+
+                  {biz.website ? (
+                    <a
+                      href={biz.website.startsWith('http') ? biz.website : `https://${biz.website}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center gap-2 bg-sky-500/10 hover:bg-sky-500 text-sky-400 hover:text-white text-xs font-bold py-2.5 rounded-xl transition duration-200"
+                    >
+                      <Globe size={13} />
+                      <span>Visit Website</span>
+                    </a>
+                  ) : (
+                    <a
+                      href={`mailto:${biz.email}`}
+                      className="w-full flex items-center justify-center gap-2 bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 text-xs font-bold py-2.5 rounded-xl transition duration-200"
+                    >
+                      <Mail size={13} />
+                      <span>Inquire Profile</span>
+                    </a>
+                  )}
                 </div>
-
-                {/* Description */}
-                {biz.description && (
-                  <p className="text-xs text-slate-400 leading-relaxed mt-3 line-clamp-2">
-                    {biz.description}
-                  </p>
-                )}
-
-                {/* Address */}
-                {biz.address && (
-                  <p className="text-[11px] text-slate-500 mt-2 flex items-start gap-1">
-                    <MapPin size={12} className="shrink-0 mt-0.5 text-slate-600" />
-                    <span className="line-clamp-1">{biz.address}</span>
-                  </p>
-                )}
               </div>
+            ))}
+          </div>
 
-              {/* Action and contact details footer */}
-              <div className="mt-6 pt-4 border-t border-slate-800/60 space-y-3">
-                <div className="grid grid-cols-2 gap-2 text-[11px] text-slate-400">
-                  <a
-                    href={`tel:${biz.phone}`}
-                    className="flex items-center gap-1.5 hover:text-white transition py-1"
-                  >
-                    <Phone size={12} className="text-sky-400" />
-                    <span>Call Owner</span>
-                  </a>
-                  <a
-                    href={`mailto:${biz.email}`}
-                    className="flex items-center gap-1.5 hover:text-white transition py-1 justify-end"
-                  >
-                    <Mail size={12} className="text-sky-400" />
-                    <span className="truncate max-w-[80px]">Email</span>
-                  </a>
+          {/* Paywall CTA for unverified/logged-out visitors */}
+          {isLimited && (
+            <div className="relative mt-2 rounded-3xl overflow-hidden">
+              {/* Frosted blur overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/95 to-slate-950/60 backdrop-blur-sm z-10" />
+              {/* Placeholder blurred cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 opacity-20 pointer-events-none select-none px-0 py-2">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="h-56 rounded-3xl bg-slate-800/60 border border-slate-700/40" />
+                ))}
+              </div>
+              {/* Lock message */}
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6 gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center">
+                  <Briefcase size={26} className="text-sky-400" />
                 </div>
-
-                {biz.website ? (
-                  <a
-                    href={biz.website.startsWith('http') ? biz.website : `https://${biz.website}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 bg-sky-500/10 hover:bg-sky-500 text-sky-400 hover:text-white text-xs font-bold py-2.5 rounded-xl transition duration-200"
-                  >
-                    <Globe size={13} />
-                    <span>Visit Website</span>
-                  </a>
-                ) : (
-                  <a
-                    href={`mailto:${biz.email}`}
-                    className="w-full flex items-center justify-center gap-2 bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 text-xs font-bold py-2.5 rounded-xl transition duration-200"
-                  >
-                    <Mail size={13} />
-                    <span>Inquire Profile</span>
-                  </a>
-                )}
+                <div className="space-y-1.5">
+                  <h3 className="text-xl font-black text-white uppercase tracking-wider">Unlock Full Directory</h3>
+                  <p className="text-sm text-slate-400 max-w-md leading-relaxed">
+                    You are viewing a <strong className="text-sky-400">10-listing preview</strong>. Log in as a <strong className="text-sky-400">Verified JCI Member</strong> to browse all business profiles, contact details, and partner listings.
+                  </p>
+                </div>
+                <Link
+                  href="/login"
+                  className="inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white font-black px-8 py-3.5 rounded-xl transition shadow-lg shadow-sky-500/20 text-sm active:scale-[0.98]"
+                >
+                  <PlusCircle size={16} />
+                  <span>Log In to Access Full Directory</span>
+                </Link>
               </div>
             </div>
-          ))}
-        </div>
+          )}
+        </>
       )}
     </div>
   );

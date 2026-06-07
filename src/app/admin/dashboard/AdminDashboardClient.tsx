@@ -69,6 +69,7 @@ interface AdminDashboardClientProps {
     verifiedUsers: number;
     totalBusinesses: number;
     pendingBusinesses: number;
+    pendingVerifications: number;
     newInboxes: number;
   };
 }
@@ -517,7 +518,8 @@ export default function AdminDashboardClient({
               <Clock size={12} className="text-yellow-400" />
               <span>Pending Reviews</span>
             </span>
-            <h4 className="text-2xl font-black text-yellow-400 mt-3">{metrics.pendingBusinesses}</h4>
+            <h4 className="text-2xl font-black text-yellow-400 mt-3">{metrics.pendingVerifications}</h4>
+            <p className="text-[9px] text-slate-500 mt-1">Badge Verifications</p>
           </div>
 
           <div className="p-5 rounded-2xl bg-[#0f172e]/60 border border-slate-800/80 col-span-2 lg:col-span-1">
